@@ -4,6 +4,8 @@ import { SignInScreen } from './src/screens/signin-screen';
 import MainNavigator from './src/screens/navigator/main-navigator'
 import { Provider } from 'react-redux';
 import store from './src/stores/store';
+import { setupApiInterceptors } from './src/services/api-service';
+import { logout } from './src/slices/auth-slice';
 import { ActivityIndicator, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from './src/stores/store';
 import { useEffect } from 'react';
@@ -12,6 +14,7 @@ import { initAuth } from './src/slices/auth-slice';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  setupApiInterceptors({ getState: store.getState, onAuthFailed: () => store.dispatch(logout() as any) });
   return (
     <Provider store={store}>
       <AppContent />
@@ -29,7 +32,6 @@ const AppContent: React.FC = () => {
   }, [dispatch]);
 
   if (isInitializing) {
-    console.log('Initializing auth...');
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ActivityIndicator size="large" color="#0df2f2" />

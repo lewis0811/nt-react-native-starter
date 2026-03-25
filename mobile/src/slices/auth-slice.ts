@@ -40,7 +40,7 @@ export const initAuth = createAsyncThunk('auth/init', async () => {
 export const login = createAsyncThunk('auth/login', async (credentials: LoginCredentials, { rejectWithValue }) => {
     try {
         const result = await loginApi(credentials);
-        const token = result?.token;
+        const token = result?.token || result?.accessToken;
         const user = result?.user;
         if (token) {
             await storeUserSession(token, user?.id ? String(user.id) : undefined);

@@ -138,7 +138,6 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
                             onPress={async () => {
                                 try {
                                     await signOut();
-                                    navigation.navigate('SignIn');
                                 } catch (e) {
                                     // ignore
                                 }

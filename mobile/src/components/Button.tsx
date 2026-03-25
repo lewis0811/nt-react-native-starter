@@ -14,7 +14,11 @@ export default function Button({ style, title, children, loading = false, disabl
             {loading ? (
                 <ActivityIndicator color={styles.text.color as any} />
             ) : children ? (
-                children
+                typeof children === 'string' || typeof children === 'number' ? (
+                    <Text style={[styles.text, textStyle]}>{children}</Text>
+                ) : (
+                    children
+                )
             ) : (
                 <Text style={[styles.text, textStyle]}>{title}</Text>
             )}

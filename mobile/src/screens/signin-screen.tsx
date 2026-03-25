@@ -27,7 +27,7 @@ export const SignInScreen: FC<ISignInScreen> = ({ navigation }) => {
     const [useBiometrics, setUseBiometrics] = useState(false);
 
     const handleSignIn = async () => {
-        if (loading) return; // prevent duplicate submissions
+        if (loading) return;
         try {
             await signIn({ username, password });
         } catch (error: any) {
