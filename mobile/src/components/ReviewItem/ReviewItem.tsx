@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { styles as screenStyles } from '../screens/styles/product-details-styles';
+import { styles as screenStyles } from '../../screens/styles/product-details-styles';
 
 interface Review {
     id?: string | number;

@@ -7,7 +7,6 @@ interface ProductDetailsState {
     reviews: any[];
     loading: boolean;
     error: string | null;
-    favorites: Record<string, boolean>;
 }
 
 const initialState: ProductDetailsState = {
@@ -15,7 +14,6 @@ const initialState: ProductDetailsState = {
     reviews: [],
     loading: false,
     error: null,
-    favorites: {},
 };
 
 export const fetchProductById = createAsyncThunk('productDetails/fetchProductById', async (id: number) => {
@@ -36,10 +34,6 @@ const slice = createSlice({
             state.product = action.payload;
             state.error = null;
         },
-        toggleFavorite(state, action: PayloadAction<number>) {
-            const id = String(action.payload);
-            state.favorites[id] = !state.favorites[id];
-        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProductById.pending, (state) => { state.loading = true; state.error = null; });
@@ -52,5 +46,5 @@ const slice = createSlice({
     }
 });
 
-export const { setProduct, toggleFavorite } = slice.actions;
+export const { setProduct } = slice.actions;
 export default slice.reducer;

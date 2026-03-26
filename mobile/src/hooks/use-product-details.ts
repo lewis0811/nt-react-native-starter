@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../stores/store';
-import { fetchProductById, fetchProductReviews, setProduct, toggleFavorite } from '../slices/product-details-slice';
+import { fetchProductById, fetchProductReviews, setProduct } from '../slices/product-details-slice';
 
 export default function useProductDetails(productParam?: any) {
     const dispatch = useAppDispatch();
     const state = useAppSelector((s) => s.productDetails);
 
     useEffect(() => {
-        const id = productParam?.id ?? productParam;
+        const id = typeof productParam === 'object' ? productParam?.id : productParam;
+
         if (!id && productParam && productParam.id === undefined && productParam.name) {
-            // product object passed; set it but don't fetch
             dispatch(setProduct(productParam));
             return;
         }
@@ -19,20 +19,13 @@ export default function useProductDetails(productParam?: any) {
         }
     }, [dispatch, productParam]);
 
-    const onToggleFavorite = (id?: number) => {
-        const pid = id ?? state.product?.id;
-        if (!pid) return;
-        dispatch(toggleFavorite(pid));
-    };
-
     return {
         product: state.product,
         reviews: state.reviews,
         loading: state.loading,
         error: state.error,
-        isFavorite: state.product ? !!state.favorites[String(state.product.id)] : false,
         fetchProductById: (id: number) => dispatch(fetchProductById(id)),
         fetchProductReviews: (id: number) => dispatch(fetchProductReviews(id)),
-        toggleFavorite: onToggleFavorite,
+        // favorites removed
     };
 }

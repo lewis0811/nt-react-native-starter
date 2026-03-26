@@ -59,8 +59,12 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     favoriteIcon: {
-        fontSize: 24,
-        color: '#9CA3AF',
+        width: 24,
+        height: 24,
+        tintColor: '#9CA3AF',
+    },
+    favoriteIconActive: {
+        tintColor: '#FF3B30',
     },
     featuresRow: {
         flexDirection: 'row',
@@ -128,10 +132,9 @@ export const styles = StyleSheet.create({
         lineHeight: 20,
     },
     reviewItem: {
-        marginTop: 12,
-        backgroundColor: '#fff',
+        backgroundColor: '#FFFFFF',
         padding: 12,
-        borderRadius: 8,
+        marginHorizontal: 12,
     },
     reviewText: {
         marginTop: 6,
@@ -178,6 +181,10 @@ export const styles = StyleSheet.create({
     reviewRowRight: {
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    reviewDivider: {
+        height: 1,
+        backgroundColor: '#F3F4F6',
     },
     headerTitle: {
         fontSize: 18,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageBackground, KeyboardAvoidingView, StyleSheet, TextStyle, ViewStyle } from 'react-native';
 
-import ImageAssets from '../assets/images';
+import ImageAssets from '../../assets/images';
 
 export default function Background({ children }: any) {
     return (

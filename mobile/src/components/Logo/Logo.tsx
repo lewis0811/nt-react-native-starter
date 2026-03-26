@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image, ImageStyle, StyleSheet } from 'react-native';
 
-import ImageAssets from '../assets/images';
+import ImageAssets from '../../assets/images';
 
 export default function Logo() {
     return <Image source={ImageAssets.logo} style={styles.image} />;

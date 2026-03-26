@@ -26,7 +26,7 @@ interface Props {
 export const ProductDetailsScreen: React.FC<Props> = ({ route, navigation }) => {
     const initial = route?.params?.product;
     const pid = initial?.id ?? undefined;
-    const { product, reviews, loading, error, isFavorite, toggleFavorite, fetchProductById } = useProductDetails(initial ?? pid);
+    const { product, reviews, loading, error, fetchProductById } = useProductDetails(initial ?? pid);
 
     const handleRetry = useCallback(() => {
         const idToFetch = product?.id ?? pid;
@@ -39,14 +39,14 @@ export const ProductDetailsScreen: React.FC<Props> = ({ route, navigation }) => 
 
     const handleGoBack = useCallback(() => navigation?.goBack?.(), [navigation]);
     const handleShare = useCallback(() => Alert.alert('Share', 'Share product'), []);
-    const handleToggleFavorite = useCallback(() => toggleFavorite(product?.id), [toggleFavorite, product?.id]);
+    // favorite feature removed
     const handleAddToCart = useCallback(() => Alert.alert('Added', 'Added to cart'), []);
     const handleBuyNow = useCallback(() => Alert.alert('Buy', 'Proceed to buy'), []);
 
     if (loading) {
         return (
             <View style={styles.center}>
-                <ActivityIndicator />
+                <ActivityIndicator testID="loading-indicator" />
             </View>
         );
     }
@@ -76,7 +76,7 @@ export const ProductDetailsScreen: React.FC<Props> = ({ route, navigation }) => 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={handleGoBack} style={styles.headerButton}>
+                <TouchableOpacity testID="back-button" onPress={handleGoBack} style={styles.headerButton}>
                     <Image
                         source={require('../assets/images/arrow_back.png')}
                         style={styles.headerIconImage}
@@ -86,7 +86,7 @@ export const ProductDetailsScreen: React.FC<Props> = ({ route, navigation }) => 
 
                 <Text style={styles.headerTitle}>Product Details</Text>
 
-                <TouchableOpacity onPress={handleShare} style={styles.headerButton}>
+                <TouchableOpacity testID="share-button" onPress={handleShare} style={styles.headerButton}>
                     <Image
                         source={require('../assets/images/share_icon.png')}
                         style={styles.headerIconImage}
@@ -96,8 +96,11 @@ export const ProductDetailsScreen: React.FC<Props> = ({ route, navigation }) => 
             </View>
             <FlatList
                 data={reviews}
-                keyExtractor={(item, index) => String(item.id ?? `${item.userId ?? 'anon'}-${item.createdAt ?? index}`)}
-                renderItem={({ item }) => <ReviewItem review={item} />}
+                keyExtractor={(item, index) => String(item.id ?? index)}
+                renderItem={({ item }) => (
+                    <ReviewItem review={item} />
+                )}
+                ItemSeparatorComponent={() => <View style={styles.reviewDivider} />}
                 ListHeaderComponent={() => (
                     <>
                         <Image source={{ uri: product.image ?? 'https://via.placeholder.com/600' }} style={styles.hero} />
@@ -107,8 +110,12 @@ export const ProductDetailsScreen: React.FC<Props> = ({ route, navigation }) => 
                             <Text style={styles.title}>{product?.name}</Text>
                             <RatingStars average={averageRating} count={reviewCount} />
                             <Text style={styles.price}>{price}</Text>
-                            <TouchableOpacity style={styles.favoriteButton} onPress={handleToggleFavorite}>
-                                <Text style={styles.favoriteIcon}>{isFavorite ? '♥' : '♡'}</Text>
+                            <TouchableOpacity testID="favorite-button" style={styles.favoriteButton}>
+                                <Image
+                                    source={require('../assets/images/heart_icon.png')}
+                                    style={styles.favoriteIcon}
+                                    resizeMode="contain"
+                                />
                             </TouchableOpacity>
                         </View>
 
@@ -178,24 +185,25 @@ export const ProductDetailsScreen: React.FC<Props> = ({ route, navigation }) => 
                             <Text style={styles.description}>{product.description ?? 'No description provided.'}</Text>
                         </View>
 
-                        <View style={styles.sectionCard}>
-                            <Text style={styles.sectionTitle}>User Reviews</Text>
-                        </View>
+                        {reviews.length === 0 ? (
+                            <View style={styles.sectionCard}>
+                                <Text style={styles.sectionTitle}>User Reviews</Text>
+                                <Text style={styles.reviewEmptyText}>No reviews yet.</Text>
+                            </View>
+                        ) : (
+                            <View style={styles.sectionCard}>
+                                <Text style={styles.sectionTitle}>User Reviews</Text>
+                            </View>
+                        )}
                     </>
                 )}
-                ListEmptyComponent={() => (
-                    <View style={styles.sectionCard}>
-                        <Text style={styles.reviewEmptyText}>No reviews yet.</Text>
-                    </View>
-                )}
-                contentContainerStyle={{ paddingBottom: 120 }}
             />
 
             <View style={styles.footer}>
-                <TouchableOpacity style={styles.cartBtn} onPress={handleAddToCart}>
+                <TouchableOpacity testID="add-to-cart-button" style={styles.cartBtn} onPress={handleAddToCart}>
                     <Text style={styles.cartBtnText}>Add to Cart</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buyBtn} onPress={handleBuyNow}>
+                <TouchableOpacity testID="buy-now-button" style={styles.buyBtn} onPress={handleBuyNow}>
                     <Text style={styles.buyBtnText}>Buy Now</Text>
                 </TouchableOpacity>
             </View>
