@@ -30,8 +30,8 @@ const TabNavigator = () => (
                 />
             ),
         }} />
-        {/* <Tab.Screen name="List" component={ListScreen} /> */}
-        <Tab.Screen name="Profile" component={ProfileScreen} options={{
+        {/* <Tab.Screen name="List" component={ProfileScreen} /> */}
+        <Tab.Screen name="Profile" component={ProfileScreen as React.ComponentType<any>} options={{
             tabBarIcon: ({ color, size }) => (
                 <Image
                     source={require('../../assets/images/person.png')}
