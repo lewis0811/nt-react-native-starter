@@ -1,23 +1,29 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
     Text,
     View,
     FlatList,
-    Image,
-    TouchableOpacity,
     ActivityIndicator,
     ScrollView,
+    TouchableOpacity,
+    Image,
 } from 'react-native';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 import useAuth from '../hooks/use-auth';
 import useProducts from '../hooks/use-products';
+import ProductCard from './components/ProductCard';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { Product } from '../types/product';
+
+type RootStackParamList = {
+    ProductDetails: { product: Product };
+};
 
 interface HomeScreenProps {
-    navigation: any;
+    navigation: NativeStackNavigationProp<RootStackParamList, 'ProductDetails'>;
 }
-
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     const [activeCategory, setActiveCategory] = useState('All Items');
@@ -32,48 +38,23 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
     useEffect(() => {
         if (!error) return;
-        const errObj = error as any;
+        const errObj = error as { status?: number; response?: { status?: number } };
         const status = errObj?.status ?? errObj?.response?.status;
-
         if (status === 401 || status === 403) {
             void signOut();
         }
     }, [error, navigation, signOut]);
 
-    const renderProduct = ({ item }: any) => {
-        const price = typeof item.price === 'number' ? `$${item.price.toFixed(2)}` : item.price;
-        return (
-            <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetails', { product: item })}>
-                <View style={styles.imageContainer}>
-                    <Image
-                        source={{ uri: item.image || 'https://via.placeholder.com/300' }}
-                        style={styles.image}
-                        resizeMode="cover"
-                    />
-                    <TouchableOpacity style={styles.heart}>
-                        <Text style={styles.heartText}>♡</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.info}>
-                    <Text style={styles.title} numberOfLines={1}>{item.name}</Text>
-                    <Text style={styles.category} numberOfLines={1}>{item.description ?? item.priceUnit ?? 'Category'}</Text>
-                    <View style={styles.rowBetween}>
-                        <Text style={styles.price}>{price}</Text>
-                        <TouchableOpacity style={styles.addButton}>
-                            <Text style={styles.addText}>+</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        );
-    };
+    const handleProductPress = useCallback((product: Product) => {
+        navigation.navigate('ProductDetails', { product });
+    }, [navigation]);
 
     return (
         <View style={styles.container}>
             <View style={styles.headerRow}>
                 <Text style={styles.header}>Discover</Text>
                 <View style={styles.headerActions}>
-                    <TouchableOpacity style={styles.iconBtn}>
+                    <TouchableOpacity style={styles.iconBtn} testID="notification-button">
                         <View style={styles.notificationIcon}>
                             <Image
                                 source={require('../assets/images/notification_icon.png')}
@@ -81,7 +62,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                             />
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.iconBtn}>
+                    <TouchableOpacity style={styles.iconBtn} testID="cart-button">
                         <View style={styles.cartIcon}>
                             <Image
                                 source={require('../assets/images/cart_icon.png')}
@@ -103,6 +84,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                             key={c}
                             onPress={() => setActiveCategory(c)}
                             style={[styles.chip, activeCategory === c && styles.chipActive]}
+                            testID={`category-chip-${c}`}
                         >
                             <Text style={[styles.chipText, activeCategory === c && styles.chipTextActive]}>{c}</Text>
                         </TouchableOpacity>
@@ -111,19 +93,24 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
             </View>
 
             {loading ? (
-                <ActivityIndicator style={{ marginTop: 20 }} />
+                <ActivityIndicator style={{ marginTop: 20 }} testID="loading-indicator" />
             ) : error ? (
                 <View style={{ padding: 16, alignItems: 'center' }}>
                     <View style={{ alignItems: 'center' }}>
                         <Text style={{ color: '#a00', marginBottom: 8 }}>Can't load products.</Text>
-                        <Button onPress={() => { void refresh(); }}>Try again</Button>
+                        <Button onPress={() => { void refresh(); }} testID="retry-button">Try again</Button>
                     </View>
                 </View>
             ) : (
                 <FlatList
                     data={products}
-                    keyExtractor={(i: any) => String(i.id)}
-                    renderItem={renderProduct}
+                    keyExtractor={(i: Product) => String(i.id)}
+                    renderItem={({ item }) => (
+                        <ProductCard
+                            product={item}
+                            onPress={handleProductPress}
+                        />
+                    )}
                     numColumns={2}
                     contentContainerStyle={styles.list}
                     columnWrapperStyle={{ justifyContent: 'space-between' }}
@@ -131,7 +118,6 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                     refreshing={loading}
                 />
             )}
-
         </View>
     );
 };
