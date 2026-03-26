@@ -63,7 +63,13 @@ yarn-error.log
 .metro-health-check*
 
 # testing
+# Ignore test coverage outputs
 /coverage
+mobile/coverage/
+coverage-final.json
+lcov.info
+lcov-report/
+mobile/coverage/lcov-report/
 
 # --- Added recommended ignores ---
 # Android specific build outputs
