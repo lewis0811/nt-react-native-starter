@@ -39,7 +39,6 @@ export const ProductDetailsScreen: React.FC<Props> = ({ route, navigation }) => 
 
     const handleGoBack = useCallback(() => navigation?.goBack?.(), [navigation]);
     const handleShare = useCallback(() => Alert.alert('Share', 'Share product'), []);
-    // favorite feature removed
     const handleAddToCart = useCallback(() => Alert.alert('Added', 'Added to cart'), []);
     const handleBuyNow = useCallback(() => Alert.alert('Buy', 'Proceed to buy'), []);
 

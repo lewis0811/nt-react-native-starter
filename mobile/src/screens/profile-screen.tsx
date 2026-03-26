@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import OrderHistoryAction from '../components/OrderHistoryAction';
+import LogoutAction from '../components/LogoutAction';
 import {
     Image,
     Pressable,
@@ -7,11 +9,22 @@ import {
     Text,
     View,
 } from 'react-native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { RouteProp } from '@react-navigation/native';
 import useAuth from '../hooks/use-auth';
 import { styles } from './styles/profile-screen-styles';
 
+type RootStackParamList = {
+    Profile: undefined;
+    Home: undefined;
+};
+
+type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Profile'>;
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Profile'>;
+
 interface ProfileScreenProps {
-    navigation: any;
+    navigation: ProfileScreenNavigationProp;
+    route: ProfileScreenRouteProp;
 }
 
 const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
@@ -25,15 +38,22 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
     const age = user?.age ?? 28;
     const role = user?.role || 'user';
 
-    const handleGoBack = () => {
+    const handleGoBack = useCallback(() => {
         navigation.navigate('Home');
-    };
+    }, [navigation]);
+
+    const handleSignOut = useCallback(async () => {
+        try {
+            await signOut();
+        } catch (e) {
+        }
+    }, [signOut]);
 
     return (
         <SafeAreaView style={styles.safeArea}>
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Pressable onPress={handleGoBack} style={styles.headerButton}>
+                    <Pressable testID="back-button" onPress={handleGoBack} style={styles.headerButton}>
                         <Image
                             source={require('../assets/images/arrow_back.png')}
                             style={[styles.headerIconImage, { tintColor: '#0F172A' }]}
@@ -41,7 +61,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
                         />
                     </Pressable>
                     <Text style={styles.headerTitle}>Profile Settings</Text>
-                    <Pressable style={styles.headerButton}>
+                    <Pressable testID="setting-button" style={styles.headerButton}>
                         <Image
                             source={require('../assets/images/setting_icon.png')}
                             style={[styles.headerIconImage, { tintColor: '#0F172A' }]}
@@ -84,7 +104,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
                     <View style={styles.detailsCard}>
                         <View style={styles.detailsHeader}>
                             <Text style={styles.detailsTitle}>Account Details</Text>
-                            <Pressable>
+                            <Pressable testID="edit-details-button">
                                 <Text style={styles.editDetailsText}>Edit Details</Text>
                             </Pressable>
                         </View>
@@ -113,47 +133,8 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
                     </View>
 
                     <View style={styles.actionsContainer}>
-                        <Pressable
-                            style={styles.actionCard}
-                        >
-                            <View style={styles.actionLeft}>
-                                <View style={styles.orderIconBackground}>
-                                    <Image
-                                        source={require('../assets/images/lock_icon.png')}
-                                        style={styles.orderIcon}
-                                        resizeMode="contain"
-                                    />
-                                </View>
-                                <Text style={styles.actionLabel}>Order History</Text>
-                            </View>
-                            <Image
-                                source={require('../assets/images/chevron_icon.png')}
-                                style={styles.chevronIcon}
-                                resizeMode="contain"
-                            />
-                        </Pressable>
-
-                        <Pressable
-                            style={styles.actionCard}
-                            onPress={async () => {
-                                try {
-                                    await signOut();
-                                } catch (e) {
-                                    // ignore
-                                }
-                            }}
-                        >
-                            <View style={styles.actionLeft}>
-                                <View style={styles.logoutIconBackground}>
-                                    <Image
-                                        source={require('../assets/images/logout_icon.png')}
-                                        style={styles.logoutIcon}
-                                        resizeMode="contain"
-                                    />
-                                </View>
-                                <Text style={styles.logoutLabel}>Logout</Text>
-                            </View>
-                        </Pressable>
+                        <OrderHistoryAction />
+                        <LogoutAction onSignOut={handleSignOut} />
                     </View>
                 </ScrollView>
             </View>
