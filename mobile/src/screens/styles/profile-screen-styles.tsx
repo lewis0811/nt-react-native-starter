@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.06,
         shadowRadius: 20,
         shadowOffset: { width: 0, height: 4 },
-        elevation: 9,
+        elevation: 2,
     },
     avatarWrapper: {
         width: 96,
@@ -126,7 +126,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.05,
         shadowRadius: 20,
         shadowOffset: { width: 0, height: 4 },
-        elevation: 3,
+        elevation: 1,
     },
     detailsHeader: {
         flexDirection: 'row',
@@ -188,7 +188,7 @@ export const styles = StyleSheet.create({
         shadowOpacity: 0.05,
         shadowRadius: 20,
         shadowOffset: { width: 0, height: 4 },
-        elevation: 3,
+        elevation: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

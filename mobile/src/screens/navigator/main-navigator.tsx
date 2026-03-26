@@ -6,6 +6,7 @@ import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import useAuth from '../../hooks/use-auth';
 import { SignInScreen } from '../signin-screen';
+import { ProductDetailsScreen } from '../product-details-screen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -58,7 +59,10 @@ const MainNavigator: React.FC<IMainNavigator> = ({ navigation }) => {
             {token == null ? (
                 <Stack.Screen name="SignIn" component={SignInScreen} />
             ) : (
-                <Stack.Screen name="MainTabs" component={TabNavigator} />
+                <>
+                    <Stack.Screen name="MainTabs" component={TabNavigator} />
+                    <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
+                </>
             )}
         </Stack.Navigator>
     );

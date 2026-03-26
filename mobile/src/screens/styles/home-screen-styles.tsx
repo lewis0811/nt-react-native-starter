@@ -63,6 +63,11 @@ export const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 3,
     },
+    iconImage: {
+        width: 12,
+        height: 12,
+        resizeMode: 'contain',
+    },
     searchWrap: {
         marginTop: 8,
     },

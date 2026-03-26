@@ -12,8 +12,6 @@ import {
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 import useAuth from '../hooks/use-auth';
-import { useAppDispatch } from '../stores/store';
-import { logout } from '../slices/auth-slice';
 import useProducts from '../hooks/use-products';
 
 interface HomeScreenProps {
@@ -45,7 +43,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     const renderProduct = ({ item }: any) => {
         const price = typeof item.price === 'number' ? `$${item.price.toFixed(2)}` : item.price;
         return (
-            <View style={styles.card}>
+            <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetails', { product: item })}>
                 <View style={styles.imageContainer}>
                     <Image
                         source={{ uri: item.image || 'https://via.placeholder.com/300' }}
@@ -66,7 +64,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     };
 
@@ -76,18 +74,20 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                 <Text style={styles.header}>Discover</Text>
                 <View style={styles.headerActions}>
                     <TouchableOpacity style={styles.iconBtn}>
-                        <Image
-                            source={require('../assets/images/notification_icon.png')}
-                            style={[styles.notificationIcon, { tintColor: '#0F172A' }]}
-                            resizeMode="contain"
-                        />
+                        <View style={styles.notificationIcon}>
+                            <Image
+                                source={require('../assets/images/notification_icon.png')}
+                                style={[styles.iconImage, { tintColor: '#0F172A' }]}
+                            />
+                        </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.iconBtn}>
-                        <Image
-                            source={require('../assets/images/cart_icon.png')}
-                            style={[styles.cartIcon, { tintColor: '#0F172A' }]}
-                            resizeMode="contain"
-                        />
+                        <View style={styles.cartIcon}>
+                            <Image
+                                source={require('../assets/images/cart_icon.png')}
+                                style={[styles.iconImage, { tintColor: '#0F172A' }]}
+                            />
+                        </View>
                     </TouchableOpacity>
                 </View>
             </View>
