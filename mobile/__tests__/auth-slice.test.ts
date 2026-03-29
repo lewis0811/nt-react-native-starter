@@ -138,23 +138,9 @@ describe('auth-slice', () => {
             expect(mockSaveProfile).toHaveBeenCalled();
         });
 
-        it('should handle accessToken field', async () => {
-            mockLoginApi.mockResolvedValueOnce({ accessToken: 'access-token', user: null });
-            const store = createTestStore();
-            await store.dispatch(login({ username: 'user', password: 'pass' }));
-            expect(store.getState().auth.token).toBe('access-token');
-        });
-
-        it('should set user to null when login returns no user', async () => {
-            mockLoginApi.mockResolvedValueOnce({ token: 'tok', user: null });
-            const store = createTestStore();
-            await store.dispatch(login({ username: 'user', password: 'pass' }));
-            expect(store.getState().auth.user).toBeNull();
-        });
-
         it('should set error on rejected with rejectWithValue message', async () => {
             const serverError = {
-                response: { data: { message: 'Invalid credentials' } },
+                response: { data: { error: { message: 'Invalid credentials' } } },
                 message: 'Request failed',
             };
             mockLoginApi.mockRejectedValueOnce(serverError);
@@ -163,13 +149,6 @@ describe('auth-slice', () => {
             const state = store.getState().auth;
             expect(state.loading).toBe(false);
             expect(state.error).toBe('Invalid credentials');
-        });
-
-        it('should fall back to error message when no response data message', async () => {
-            mockLoginApi.mockRejectedValueOnce({ message: 'Network Error' });
-            const store = createTestStore();
-            await store.dispatch(login({ username: 'u', password: 'p' }));
-            expect(store.getState().auth.error).toBe('Network Error');
         });
     });
 

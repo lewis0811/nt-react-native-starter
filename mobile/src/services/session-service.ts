@@ -1,6 +1,6 @@
 import EncryptedStorage from 'react-native-encrypted-storage';
 
-export const storeUserSession = async (token: string, userId?: string) => {
+export const storeUserSession = async (token: string, userId: string) => {
     try {
         const payload = JSON.stringify({ token, userId });
         await EncryptedStorage.setItem('user_session', payload);

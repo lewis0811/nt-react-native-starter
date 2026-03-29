@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen } from '../home-screen';
 import { ProfileScreen } from '../profile-screen';
-import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Image, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import useAuth from '../../hooks/use-auth';
 import { SignInScreen } from '../signin-screen';
 import { ProductDetailsScreen } from '../product-details-screen';
+import { styles } from '../styles/main-navigator-styles';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -15,12 +16,14 @@ interface IMainNavigator {
     navigation: any
 }
 
+const tabScreenOptions = {
+    headerShown: false,
+    tabBarActiveTintColor: "#0DF2F2",
+    tabBarInactiveTintColor: "gray",
+};
+
 const TabNavigator = () => (
-    <Tab.Navigator screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: '#0DF2F2',
-        tabBarInactiveTintColor: 'gray',
-    }}>
+    <Tab.Navigator screenOptions={tabScreenOptions}>
         <Tab.Screen name="Home" component={HomeScreen} options={{
             tabBarIcon: ({ color, size }) => (
                 <Image
@@ -30,7 +33,6 @@ const TabNavigator = () => (
                 />
             ),
         }} />
-        {/* <Tab.Screen name="List" component={ProfileScreen} /> */}
         <Tab.Screen name="Profile" component={ProfileScreen as React.ComponentType<any>} options={{
             tabBarIcon: ({ color, size }) => (
                 <Image
@@ -43,13 +45,13 @@ const TabNavigator = () => (
     </Tab.Navigator>
 );
 
-const MainNavigator: React.FC<IMainNavigator> = ({ navigation }) => {
+const MainNavigator: React.FC<IMainNavigator> = () => {
     const { token, isInitializing } = useAuth();
 
     if (isInitializing) {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator size="large" color="#0df2f2" />
+            <View style={styles.centeredContainer}>
+                <ActivityIndicator testID="loading-indicator" />
             </View>
         );
     }

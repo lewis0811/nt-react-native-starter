@@ -32,17 +32,9 @@ describe('session-service', () => {
             );
         });
 
-        it('should store token without userId', async () => {
-            await storeUserSession('only-token');
-            expect(EncryptedStorage.setItem).toHaveBeenCalledWith(
-                'user_session',
-                JSON.stringify({ token: 'only-token', userId: undefined })
-            );
-        });
-
         it('should handle storage error gracefully', async () => {
             (EncryptedStorage.setItem as jest.Mock).mockRejectedValueOnce(new Error('Storage error'));
-            await expect(storeUserSession('token')).resolves.toBeUndefined();
+            await expect(storeUserSession('token', 'user-err')).resolves.toBeUndefined();
         });
     });
 

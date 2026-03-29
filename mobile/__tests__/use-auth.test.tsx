@@ -25,8 +25,17 @@ const mockRetrieveSession = apiService.retrieveUserSession as jest.Mock;
 const mockStoreSession = apiService.storeUserSession as jest.Mock;
 const mockRemoveSession = apiService.removeUserSession as jest.Mock;
 const mockSaveProfile = profileRepo.saveUserProfile as jest.Mock;
-const mockGetProfile = profileRepo.getUserProfile as jest.Mock;
 const mockDeleteProfile = profileRepo.deleteUserProfile as jest.Mock;
+
+const mockUser = {
+    id: '1',
+    username: 'testuser',
+    email: 'test@example.com',
+    firstName: 'Test',
+    lastName: 'User',
+    age: 25,
+    role: 'user' as const,
+};
 
 const createTestStore = () => configureStore({ reducer: rootReducer });
 
@@ -58,7 +67,7 @@ describe('useAuth', () => {
     it('should return isAuthenticated=true when token is set', async () => {
         const store = createTestStore();
         mockRetrieveSession.mockResolvedValueOnce(null);
-        mockLoginApi.mockResolvedValueOnce({ token: 'auth-token', user: null });
+        mockLoginApi.mockResolvedValueOnce({ token: 'auth-token', user: mockUser });
 
         const { result } = renderHook(() => useAuth(), { wrapper: makeWrapper(store) });
 
@@ -96,7 +105,7 @@ describe('useAuth', () => {
     it('should set error state when signIn fails', async () => {
         const store = createTestStore();
         mockLoginApi.mockRejectedValueOnce({
-            response: { data: { message: 'Invalid credentials' } },
+            response: { data: { error: { message: 'Invalid credentials' } } },
         });
 
         const { result } = renderHook(() => useAuth(), { wrapper: makeWrapper(store) });
@@ -116,7 +125,7 @@ describe('useAuth', () => {
 
     it('should clear user and token after signOut', async () => {
         const store = createTestStore();
-        mockLoginApi.mockResolvedValueOnce({ token: 'tok', user: null });
+        mockLoginApi.mockResolvedValueOnce({ token: 'tok', user: mockUser });
         mockRetrieveSession.mockResolvedValueOnce({ token: 'tok' });
 
         const { result } = renderHook(() => useAuth(), { wrapper: makeWrapper(store) });
@@ -137,7 +146,6 @@ describe('useAuth', () => {
     it('should expose isInitializing from store state', () => {
         const store = createTestStore();
         const { result } = renderHook(() => useAuth(), { wrapper: makeWrapper(store) });
-        // Initial state has isInitializing=true
         expect(typeof result.current.isInitializing).toBe('boolean');
     });
 });
