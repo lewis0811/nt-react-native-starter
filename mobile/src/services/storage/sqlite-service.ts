@@ -4,36 +4,47 @@ SQLite.enablePromise(true);
 
 const DB_NAME = 'app.db';
 
-let dbInstance: SQLite.SQLiteDatabase | null = null;
+let dbPromise: Promise<SQLite.SQLiteDatabase> | null = null;
 
-export async function openDB(): Promise<SQLite.SQLiteDatabase> {
-    if (dbInstance) return dbInstance;
-    dbInstance = await SQLite.openDatabase({ name: DB_NAME, location: 'default' });
+export function openDB(): Promise<SQLite.SQLiteDatabase> {
+    if (dbPromise) return dbPromise;
 
-    // Create users table if not exists
-    await dbInstance.executeSql(
-        `CREATE TABLE IF NOT EXISTS users (
-      id TEXT PRIMARY KEY,
-      username TEXT,
-      email TEXT,
-      firstName TEXT,
-      lastName TEXT,
-      age INTEGER,
-      role TEXT
-    );`
-    );
+    dbPromise = (async () => {
+        try {
+            const db = await SQLite.openDatabase({ name: DB_NAME, location: 'default' });
 
-    return dbInstance;
+            await db.executeSql(
+                `CREATE TABLE IF NOT EXISTS users (
+                    id TEXT PRIMARY KEY,
+                    username TEXT,
+                    email TEXT,
+                    firstName TEXT,
+                    lastName TEXT,
+                    age INTEGER,
+                    role TEXT
+                );`
+            );
+
+            return db;
+        } catch (error) {
+            dbPromise = null;
+            console.error('Error initializing database:', error);
+            throw error;
+        }
+    })();
+
+    return dbPromise;
 }
 
 export async function closeDB(): Promise<void> {
-    if (!dbInstance) return;
+    if (!dbPromise) return;
     try {
-        await dbInstance.close();
+        const db = await dbPromise;
+        await db.close();
     } catch (e) {
-        // ignore
+        console.error('Error closing database:', e);
     } finally {
-        dbInstance = null;
+        dbPromise = null;
     }
 }
 

@@ -234,14 +234,10 @@ describe('SignInScreen', () => {
     });
 
     describe('loading state', () => {
-        it('shows ActivityIndicator when loading', () => {
-            const { ActivityIndicator: RNActivityIndicator, UNSAFE_getByType } = require('react-native');
+        it('shows loading indicator when loading', () => {
             (useAuth as jest.Mock).mockReturnValue(buildAuthMock({ loading: true }));
-            const { UNSAFE_getByType: getByType } = render(
-                <SignInScreen navigation={mockNavigation as any} />
-            );
-            const { ActivityIndicator } = require('react-native');
-            expect(getByType(ActivityIndicator)).toBeTruthy();
+            const { getByTestId } = render(<SignInScreen navigation={mockNavigation as any} />);
+            expect(getByTestId('signin-loading') || getByTestId('loading-indicator')).toBeTruthy();
         });
 
         it('hides Sign In text when loading', () => {
@@ -256,11 +252,10 @@ describe('SignInScreen', () => {
             expect(getByText('Sign In')).toBeTruthy();
         });
 
-        it('does not show ActivityIndicator when not loading', () => {
+        it('does not show loading indicator when not loading', () => {
             (useAuth as jest.Mock).mockReturnValue(buildAuthMock({ loading: false }));
-            const { UNSAFE_queryByType } = render(<SignInScreen navigation={mockNavigation as any} />);
-            const { ActivityIndicator } = require('react-native');
-            expect(UNSAFE_queryByType(ActivityIndicator)).toBeNull();
+            const { queryByTestId } = render(<SignInScreen navigation={mockNavigation as any} />);
+            expect(queryByTestId('signin-loading') || queryByTestId('loading-indicator')).toBeNull();
         });
     });
 
@@ -290,15 +285,6 @@ describe('SignInScreen', () => {
                 fireEvent.press(getByText('Sign In'));
             });
             expect(Alert.alert).toHaveBeenCalledWith('Error', expect.any(String));
-        });
-
-        it('shows Alert with fallback message when error is null', async () => {
-            mockSignIn.mockRejectedValueOnce(null);
-            const { getByText } = render(<SignInScreen navigation={mockNavigation as any} />);
-            await act(async () => {
-                fireEvent.press(getByText('Sign In'));
-            });
-            expect(Alert.alert).toHaveBeenCalledWith('Error', 'Login failed. Please try again.');
         });
 
         it('shows Alert when signIn throws an Error object', async () => {

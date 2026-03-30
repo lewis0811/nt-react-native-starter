@@ -68,6 +68,7 @@ export const styles = StyleSheet.create({
         backgroundColor: theme.colors.background.card,
         borderRadius: theme.radius['2xl'],
         marginRight: theme.spacing[2],
+        ...theme.shadow.xs,
     },
     chipActive: {
         backgroundColor: theme.colors.brand.deep,

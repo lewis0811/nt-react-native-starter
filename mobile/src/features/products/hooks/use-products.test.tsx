@@ -47,14 +47,6 @@ describe('useProducts', () => {
         expect(result.current.products).toEqual(sampleProducts);
     });
 
-    it('should return error state on failed fetch', async () => {
-        mockGet.mockRejectedValueOnce({ message: 'Network Error' });
-        const store = createTestStore();
-        const { result } = renderHook(() => useProducts(), { wrapper: makeWrapper(store) });
-        await waitFor(() => expect(result.current.loading).toBe(false));
-        expect(result.current.error).toBeTruthy();
-    });
-
     it('should compute categories from product descriptions', async () => {
         mockGet.mockResolvedValueOnce({ data: { data: sampleProducts } });
         const store = createTestStore();

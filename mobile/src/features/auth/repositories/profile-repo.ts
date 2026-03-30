@@ -1,5 +1,5 @@
 import { openDB } from '../../../services/storage/sqlite-service';
-import { User } from '../../../types/user';
+import { User } from '../../../types';
 
 export async function saveUserProfile(user: User): Promise<void> {
     const db = await openDB();

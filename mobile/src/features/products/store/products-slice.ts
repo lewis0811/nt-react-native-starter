@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { apiClient } from '../../../services/api/api-service';
 import type { RootState } from '../../../store/root-reducer';
-import type { Product } from '../types/product';
+import type { Product } from '../types';
 
 type FetchProductsError = { message: string; status?: number };
 

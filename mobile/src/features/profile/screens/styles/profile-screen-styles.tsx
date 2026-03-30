@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
     headerIconImage: {
         width: 24,
         height: 24,
+        tintColor: '#0F172A',
     },
     headerTitle: {
         fontSize: theme.typography.size.lg,
@@ -49,7 +50,6 @@ export const styles = StyleSheet.create({
         paddingTop: theme.spacing[6],
         paddingBottom: theme.spacing[6],
         paddingHorizontal: 106,
-        ...theme.shadow.md,
     },
     avatarWrapper: {
         width: 96,
@@ -177,7 +177,7 @@ export const styles = StyleSheet.create({
         backgroundColor: theme.colors.background.card,
         borderRadius: theme.radius.xl,
         padding: theme.spacing[4],
-        ...theme.shadow.md,
+        ...theme.shadow.xs,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

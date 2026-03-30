@@ -1,5 +1,6 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
+import { StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
+import LoadingScreen from '../LoadingScreen';
 import { theme } from '../../assets/styles';
 
 export default function Button({ style, title, children, loading = false, disabled = false, textStyle, ...props }: any) {
@@ -13,7 +14,7 @@ export default function Button({ style, title, children, loading = false, disabl
             {...props}
         >
             {loading ? (
-                <ActivityIndicator color={styles.text.color as any} />
+                <LoadingScreen testID="button-loading-indicator" size="small" color={styles.text.color as any} />
             ) : children ? (
                 typeof children === 'string' || typeof children === 'number' ? (
                     <Text style={[styles.text, textStyle]}>{children}</Text>

@@ -7,5 +7,3 @@ export interface User {
     age: number;
     role: 'user' | 'admin';
 }
-
-export default {};

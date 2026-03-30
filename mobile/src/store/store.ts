@@ -1,17 +1,15 @@
-
 import { configureStore, Middleware } from '@reduxjs/toolkit';
-import rootReducer
-, { RootState } from './root-reducer';
+import rootReducer, { RootState } from './root-reducer';
 import logger from 'redux-logger';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 const store = configureStore({
   reducer: rootReducer,
-  middleware: (getDefaultMiddleware) => {
-    const m = getDefaultMiddleware();
-    return process.env.NODE_ENV !== 'production' ? m.concat(logger as Middleware) : m;
-  },
-  devTools: process.env.NODE_ENV !== 'production',
+  middleware: (getDefaultMiddleware) =>
+    isDev ? getDefaultMiddleware().concat(logger as Middleware) : getDefaultMiddleware(),
+  devTools: isDev,
 });
 
 export type AppDispatch = typeof store.dispatch;

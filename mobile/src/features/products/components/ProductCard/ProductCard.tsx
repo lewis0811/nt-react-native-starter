@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
-import { Product } from '../../types/product';
+import { Product } from '../../types';
+import { styles } from '../../screens/styles/home-screen-styles';
 
 interface ProductCardProps {
     product: Product;
@@ -38,7 +39,5 @@ const ProductCard: React.FC<ProductCardProps> = React.memo(({ product, onPress }
         </TouchableOpacity>
     );
 });
-
-import { styles } from '../../screens/styles/home-screen-styles';
 
 export default ProductCard;

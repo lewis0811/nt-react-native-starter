@@ -11,13 +11,9 @@ import {
 } from 'react-native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RouteProp } from '@react-navigation/native';
+import type { RootStackParamList } from '../../../navigation/types';
 import useAuth from '../../auth/hooks/use-auth';
 import { styles } from './styles/profile-screen-styles';
-
-type RootStackParamList = {
-    Profile: undefined;
-    Home: undefined;
-};
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Profile'>;
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Profile'>;
@@ -27,7 +23,7 @@ interface ProfileScreenProps {
     route: ProfileScreenRouteProp;
 }
 
-const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
+export const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
     const { user, signOut } = useAuth();
 
     const firstName = user?.firstName || 'John';
@@ -39,13 +35,18 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
     const role = user?.role || 'user';
 
     const handleGoBack = useCallback(() => {
-        navigation.navigate('Home');
+        if (navigation.canGoBack()) {
+            navigation.goBack();
+        } else {
+            navigation.navigate('MainTabs');
+        }
     }, [navigation]);
 
     const handleSignOut = useCallback(async () => {
         try {
             await signOut();
         } catch (e) {
+            console.error('Error logging out:', e);
         }
     }, [signOut]);
 
@@ -56,7 +57,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
                     <Pressable testID="back-button" onPress={handleGoBack} style={styles.headerButton}>
                         <Image
                             source={require('../../../assets/images/arrow_back.png')}
-                            style={[styles.headerIconImage, { tintColor: '#0F172A' }]}
+                            style={styles.headerIconImage}
                             resizeMode="contain"
                         />
                     </Pressable>
@@ -64,7 +65,7 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
                     <Pressable testID="setting-button" style={styles.headerButton}>
                         <Image
                             source={require('../../../assets/images/setting_icon.png')}
-                            style={[styles.headerIconImage, { tintColor: '#0F172A' }]}
+                            style={styles.headerIconImage}
                             resizeMode="contain"
                         />
                     </Pressable>
@@ -141,5 +142,3 @@ const ProfileScreen: React.FC<ProfileScreenProps> = ({ navigation }) => {
         </SafeAreaView>
     );
 };
-
-export { ProfileScreen };

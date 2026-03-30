@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { loginApi, retrieveUserSession, storeUserSession, removeUserSession } from '../../../services/api/api-service';
-import { saveUserProfile, getUserProfile, deleteUserProfile } from '../services/profile-repo';
-import { AuthState, LoginCredentials } from '../types/auth';
-import { User } from '../../../types/user';
+import { saveUserProfile, getUserProfile, deleteUserProfile } from '../repositories/profile-repo';
+import { AuthState, LoginCredentials } from '../types';
+import { User } from '../../../types';
 
 const initialState: AuthState = {
     user: null,

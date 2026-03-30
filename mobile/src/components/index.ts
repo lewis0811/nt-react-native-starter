@@ -5,3 +5,6 @@ export { default as ListItem } from './ListItem';
 export { default as Logo } from './Logo';
 export { default as Paragraph } from './Paragraph';
 export { default as TextInput } from './TextInput';
+export { default as LoadingScreen } from './LoadingScreen';
+export { HomeTabIcon, ProfileTabIcon } from './TabIcons';
+export { default as TabIcons } from './TabIcons';

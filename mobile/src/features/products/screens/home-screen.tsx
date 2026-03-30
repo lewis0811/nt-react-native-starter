@@ -1,25 +1,20 @@
-import * as React from 'react';
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     Text,
     View,
     FlatList,
-    ActivityIndicator,
-    ScrollView,
     TouchableOpacity,
     Image,
 } from 'react-native';
+import LoadingScreen from '../../../components/LoadingScreen';
 import TextInput from '../../../components/TextInput';
-import Button from '../../../components/Button';
-import useAuth from '../../auth/hooks/use-auth';
 import useProducts from '../hooks/use-products';
 import ProductCard from '../components/ProductCard/ProductCard';
+import { styles } from './styles/home-screen-styles';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { Product } from '../types/product';
-
-type RootStackParamList = {
-    ProductDetails: { product: Product };
-};
+import type { Product } from '../types';
+import type { RootStackParamList } from '../../../navigation/types';
+import CategoryChip from '../components/CategoryChip';
 
 interface HomeScreenProps {
     navigation: NativeStackNavigationProp<RootStackParamList, 'ProductDetails'>;
@@ -27,27 +22,40 @@ interface HomeScreenProps {
 
 const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
     const [activeCategory, setActiveCategory] = useState('All Items');
-    const { signOut } = useAuth();
-    const { products, loading, refresh, error, categories } = useProducts(activeCategory);
+    const { products, loading, refresh, categories } = useProducts(activeCategory);
 
     useEffect(() => {
-        if (categories && categories.length > 0 && !categories.includes(activeCategory)) {
+        if (categories?.length > 0 && !categories.includes(activeCategory)) {
             setActiveCategory(categories[0]);
         }
-    }, [categories]);
-
-    useEffect(() => {
-        if (!error) return;
-        const errObj = error as { status?: number; response?: { status?: number } };
-        const status = errObj?.status ?? errObj?.response?.status;
-        if (status === 401 || status === 403) {
-            void signOut();
-        }
-    }, [error, navigation, signOut]);
+    }, [categories, activeCategory]);
 
     const handleProductPress = useCallback((product: Product) => {
         navigation.navigate('ProductDetails', { product });
     }, [navigation]);
+
+    const renderCategory = useCallback(({ item: c }: { item: string }) => (
+        <CategoryChip
+            label={c}
+            onPress={() => setActiveCategory(c)}
+            active={activeCategory === c}
+            testID={`category-chip-${c}`}
+            style={styles.chip}
+            activeStyle={styles.chipActive}
+            textStyle={styles.chipText}
+            activeTextStyle={styles.chipTextActive}
+        />
+    ), [activeCategory]);
+
+    const renderProduct = useCallback(({ item }: { item: Product }) => (
+        <ProductCard
+            product={item}
+            onPress={handleProductPress}
+        />
+    ), [handleProductPress]);
+
+    const keyExtractor = useCallback((item: Product) => String(item.id), []);
+    const categoryKeyExtractor = useCallback((item: string) => item, []);
 
     return (
         <View style={styles.container}>
@@ -78,39 +86,23 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
             </View>
 
             <View style={styles.categoriesWrap}>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    {categories.map((c) => (
-                        <TouchableOpacity
-                            key={c}
-                            onPress={() => setActiveCategory(c)}
-                            style={[styles.chip, activeCategory === c && styles.chipActive]}
-                            testID={`category-chip-${c}`}
-                        >
-                            <Text style={[styles.chipText, activeCategory === c && styles.chipTextActive]}>{c}</Text>
-                        </TouchableOpacity>
-                    ))}
-                </ScrollView>
+                <FlatList
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    data={categories}
+                    keyExtractor={categoryKeyExtractor}
+                    renderItem={renderCategory}
+                    extraData={activeCategory}
+                />
             </View>
 
-            {loading ? (
-                <ActivityIndicator style={styles.loadingIndicator} testID="loading-indicator" />
-            ) : error ? (
-                <View style={styles.errorContainer}>
-                    <View style={styles.errorInner}>
-                        <Text style={styles.errorText}>Can't load products.</Text>
-                        <Button onPress={() => { void refresh(); }} testID="retry-button">Try again</Button>
-                    </View>
-                </View>
+            {loading && (!products || products.length === 0) ? (
+                <LoadingScreen testID="loading-indicator" />
             ) : (
                 <FlatList
                     data={products}
-                    keyExtractor={(i: Product) => String(i.id)}
-                    renderItem={({ item }) => (
-                        <ProductCard
-                            product={item}
-                            onPress={handleProductPress}
-                        />
-                    )}
+                    keyExtractor={keyExtractor}
+                    renderItem={renderProduct}
                     numColumns={2}
                     contentContainerStyle={styles.list}
                     columnWrapperStyle={styles.columnWrapper}
@@ -121,7 +113,5 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
         </View>
     );
 };
-
-import { styles } from './styles/home-screen-styles';
 
 export { HomeScreen };

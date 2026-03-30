@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer, { initAuth, login, logout } from './auth-slice';
 import * as apiService from '../../../services/api/api-service';
-import * as profileRepo from '../services/profile-repo';
+import * as profileRepo from '../repositories/profile-repo';
 
 jest.mock('../../../services/api/api-service', () => ({
     loginApi: jest.fn(),
@@ -10,7 +10,7 @@ jest.mock('../../../services/api/api-service', () => ({
     removeUserSession: jest.fn(),
 }));
 
-jest.mock('../services/profile-repo', () => ({
+jest.mock('../repositories/profile-repo', () => ({
     saveUserProfile: jest.fn(),
     getUserProfile: jest.fn(),
     deleteUserProfile: jest.fn(),

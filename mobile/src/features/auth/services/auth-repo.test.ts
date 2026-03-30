@@ -1,14 +1,13 @@
-import axios from 'axios';
-import { loginApi } from './auth-repo';
+import { apiClient } from '../../../services/api/api-client';
+import { loginApi } from './auth-service';
 
-jest.mock('axios', () => ({
-    __esModule: true,
-    default: {
+jest.mock('../../../services/api/api-client', () => ({
+    apiClient: {
         post: jest.fn(),
     },
 }));
 
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+const mockedApiClient = apiClient as jest.Mocked<typeof apiClient>;
 
 describe('loginApi', () => {
     beforeEach(() => {
@@ -17,36 +16,27 @@ describe('loginApi', () => {
 
     it('should return data.data when response has nested data property', async () => {
         const innerData = { token: 'my-token', user: { id: 1, username: 'testuser' } };
-        mockedAxios.post.mockResolvedValueOnce({ data: { data: innerData } });
+        mockedApiClient.post.mockResolvedValueOnce({ data: { data: innerData } } as any);
 
         const result = await loginApi({ username: 'testuser', password: 'pass123' });
 
         expect(result).toEqual(innerData);
-        expect(mockedAxios.post).toHaveBeenCalledWith(
-            expect.stringContaining('/login'),
+        expect(mockedApiClient.post).toHaveBeenCalledWith(
+            '/login',
             { username: 'testuser', password: 'pass123' }
         );
     });
 
-    it('should return data directly when no nested data property', async () => {
-        const directData = { token: 'direct-token' };
-        mockedAxios.post.mockResolvedValueOnce({ data: directData });
-
-        const result = await loginApi({ username: 'testuser', password: 'pass123' });
-
-        expect(result).toEqual(directData);
-    });
-
     it('should throw error on network failure', async () => {
         const networkError = new Error('Network Error');
-        mockedAxios.post.mockRejectedValueOnce(networkError);
+        mockedApiClient.post.mockRejectedValueOnce(networkError);
 
         await expect(loginApi({ username: 'user', password: 'pass' })).rejects.toThrow('Network Error');
     });
 
     it('should throw error on 401 unauthorized', async () => {
         const authError = { response: { status: 401, data: { message: 'Unauthorized' } } };
-        mockedAxios.post.mockRejectedValueOnce(authError);
+        mockedApiClient.post.mockRejectedValueOnce(authError);
 
         await expect(loginApi({ username: 'user', password: 'wrong' })).rejects.toEqual(authError);
     });

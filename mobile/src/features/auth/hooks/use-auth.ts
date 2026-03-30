@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/store';
 import { login, logout } from '../store/auth-slice';
-import { LoginCredentials } from '../types/auth';
+import { LoginCredentials } from '../types';
 
 export default function useAuth() {
     const dispatch = useAppDispatch();

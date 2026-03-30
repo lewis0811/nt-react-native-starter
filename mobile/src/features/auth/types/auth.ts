@@ -1,4 +1,4 @@
-import { User } from '../../../types/user';
+import { User } from '../../../types';
 
 export interface AuthState {
     user: User | null;
@@ -13,4 +13,4 @@ export interface LoginCredentials {
     password: string;
 }
 
-export default {};
+

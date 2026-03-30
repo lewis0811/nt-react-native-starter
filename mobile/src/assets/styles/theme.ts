@@ -1,15 +1,8 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// Raw palette — single source of truth for all color values.
-// Reference only through semantic tokens below; do not import palette directly.
-// ─────────────────────────────────────────────────────────────────────────────
 const palette = {
-    // Brand — Teal / Cyan
     cyan500: '#0DF2F2',
     cyan600: '#06C3B0',
     cyan400: '#00E6DA',
     cyan50: '#E6FEF9',
-
-    // Neutrals (Tailwind-aligned)
     black: '#000000',
     navy: '#000033',
     slate900: '#0F172A',
@@ -26,8 +19,6 @@ const palette = {
     slate100: '#F1F5F9',
     white: '#FFFFFF',
     offWhite: '#F5FCFF',
-
-    // Status / Semantic
     red400: '#EF4444',
     red50: '#FEF2F2',
     redApple: '#FF3B30',
@@ -35,69 +26,52 @@ const palette = {
     slateBlue200: '#CBD5E1',
 } as const;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Semantic color tokens
-// ─────────────────────────────────────────────────────────────────────────────
 const colors = {
-    /** Brand accents */
     brand: {
-        primary: palette.cyan500,   // #0DF2F2 — buttons, links, active states
-        dark: palette.cyan600,   // #06C3B0 — darker accent
-        deep: palette.cyan400,   // #00E6DA — buy/add CTAs
-        light: palette.cyan50,    // #E6FEF9 — icon backgrounds
-        subtle: 'rgba(13, 242, 242, 0.10)',  // badge backgrounds
-        subtleBorder: 'rgba(13, 242, 242, 0.30)',  // outline button borders
+        primary: palette.cyan500,
+        dark: palette.cyan600,
+        deep: palette.cyan400,
+        light: palette.cyan50,
+        subtle: 'rgba(13, 242, 242, 0.10)',
+        subtleBorder: 'rgba(13, 242, 242, 0.30)',
     },
-
-    /** Surface / background hierarchy */
     background: {
-        page: palette.gray50,    // #F9FAFB — screen background
-        card: palette.white,     // #FFFFFF — card, modal surfaces
-        surface: palette.gray100,   // #F3F4F6 — tab bars, chips, dividers
-        input: palette.white,     // #FFFFFF — text input fill
-        muted: palette.slate100,  // #F1F5F9 — icon wrappers, secondary surfaces
-        overlay: palette.offWhite,  // #F5FCFF — image-background overlay
-        brandSubtle: palette.cyan50,    // #E6FEF9 — feature icon backgrounds
-        errorSubtle: palette.red50,     // #FEF2F2 — logout/danger icon backgrounds
+        page: palette.white,
+        card: palette.gray50,
+        surface: palette.gray100,
+        input: palette.white,
+        muted: palette.slate100,
+        overlay: palette.offWhite,
+        brandSubtle: palette.cyan50,
+        errorSubtle: palette.red50,
     },
-
-    /** Text hierarchy */
     text: {
-        primary: palette.slate900,  // #0F172A — headers, nav icons
-        heading: palette.gray800,   // #1F2937 — section headings
-        body: palette.gray700,   // #374151 — body copy, labels
-        secondary: palette.gray600,   // #4B5563 — secondary labels
-        muted: palette.gray500,   // #6B7280 — placeholders, hints
-        disabled: palette.gray400,   // #9CA3AF — disabled / de-emphasised
-        inverted: palette.white,     // #FFFFFF — text on dark backgrounds
-        dark: palette.gray900,   // #111827 — maximum contrast text
-        navy: palette.navy,      // #000033 — buy-button label
+        primary: palette.slate900,
+        heading: palette.gray800,
+        body: palette.gray700,
+        secondary: palette.gray600,
+        muted: palette.gray500,
+        disabled: palette.gray400,
+        inverted: palette.white,
+        dark: palette.gray900,
+        navy: palette.navy,
     },
-
-    /** Borders & dividers */
     border: {
-        default: palette.gray200,   // #E5E7EB — card borders, dividers
-        light: palette.gray100,   // #F3F4F6 — subtle hairlines
-        input: palette.gray300,   // #D1D5DB — input field borders
-        muted: palette.gray400,   // #9CA3AF — chevron / inactive icons
+        default: palette.gray200,
+        light: palette.gray100,
+        input: palette.gray300,
+        muted: palette.gray400,
     },
-
-    /** Feedback states */
     feedback: {
-        error: palette.red400,        // #EF4444 — error / logout
-        errorSubtle: palette.red50,         // #FEF2F2 — error surface
-        danger: palette.redApple,      // #FF3B30 — favourite active
-        star: palette.amber400,      // #FFB020 — filled star
-        starEmpty: palette.slateBlue200,  // #CBD5E1 — empty star
+        error: palette.red400,
+        errorSubtle: palette.red50,
+        danger: palette.redApple,
+        star: palette.amber400,
+        starEmpty: palette.slateBlue200,
     },
-
-    /** Drop-shadow base */
     shadow: palette.black,
 } as const;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Typography scale
-// ─────────────────────────────────────────────────────────────────────────────
 const typography = {
     size: {
         xs: 12,
@@ -124,9 +98,6 @@ const typography = {
     },
 } as const;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Spacing scale (multiples of 4)
-// ─────────────────────────────────────────────────────────────────────────────
 const spacing = {
     1: 4,
     2: 8,
@@ -139,9 +110,6 @@ const spacing = {
     16: 64,
 } as const;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Border-radius scale
-// ─────────────────────────────────────────────────────────────────────────────
 const radius = {
     sm: 4,
     md: 8,
@@ -151,9 +119,6 @@ const radius = {
     full: 9999,
 } as const;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Elevation / shadow presets (React Native)
-// ─────────────────────────────────────────────────────────────────────────────
 const shadow = {
     xs: {
         shadowColor: palette.black,
@@ -192,9 +157,6 @@ const shadow = {
     },
 } as const;
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Exported theme
-// ─────────────────────────────────────────────────────────────────────────────
 export const theme = {
     colors,
     typography,

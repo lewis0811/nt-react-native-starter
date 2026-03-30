@@ -8,7 +8,7 @@ describe('api-client', () => {
     });
 
     describe('setupApiInterceptors', () => {
-        let capturedRequestHandler: ((config: any) => Promise<any>) | null = null;
+        let capturedRequestHandler: ((config: any) => any) | null = null;
         let capturedResponseSuccess: ((resp: any) => any) | null = null;
         let capturedResponseError: ((error: any) => Promise<any>) | null = null;
 
@@ -40,25 +40,31 @@ describe('api-client', () => {
             expect(apiClient.interceptors.response.use).toHaveBeenCalled();
         });
 
-        it('should add Authorization header when token is present', async () => {
+        it('should add Authorization header when token is present', () => {
             const getState = jest.fn().mockReturnValue({ auth: { token: 'test-token' } });
             setupApiInterceptors({ getState, onAuthFailed: jest.fn() });
 
-            const config: any = { headers: {} };
-            const result = await capturedRequestHandler!(config);
-            expect(result.headers.Authorization).toBe('Bearer test-token');
+            const mockSet = jest.fn();
+            const config: any = { headers: { set: mockSet } };
+
+            capturedRequestHandler!(config);
+
+            expect(mockSet).toHaveBeenCalledWith('Authorization', 'Bearer test-token');
         });
 
-        it('should not add Authorization header when no token', async () => {
+        it('should not add Authorization header when no token', () => {
             const getState = jest.fn().mockReturnValue({ auth: {} });
             setupApiInterceptors({ getState, onAuthFailed: jest.fn() });
 
-            const config: any = { headers: {} };
-            const result = await capturedRequestHandler!(config);
-            expect(result.headers.Authorization).toBeUndefined();
+            const mockSet = jest.fn();
+            const config: any = { headers: { set: mockSet } };
+
+            capturedRequestHandler!(config);
+
+            expect(mockSet).not.toHaveBeenCalled();
         });
 
-        it('should pass through successful responses', async () => {
+        it('should pass through successful responses', () => {
             setupApiInterceptors({ getState: jest.fn().mockReturnValue({}), onAuthFailed: jest.fn() });
 
             const resp = { data: { items: [] }, status: 200 };

@@ -11,9 +11,13 @@ jest.mock('../../auth/components/LogoutAction', () => jest.fn(() => null));
 
 const mockNavigate = jest.fn();
 const mockSignOut = jest.fn();
+const mockCanGoBack = jest.fn();
+const mockGoBack = jest.fn();
 
 const mockNavigation = {
     navigate: mockNavigate,
+    canGoBack: mockCanGoBack,
+    goBack: mockGoBack,
 } as any;
 
 const mockRoute = {
@@ -49,9 +53,26 @@ describe('ProfileScreen', () => {
 
     it('navigates back when back button pressed', () => {
         (useAuth as jest.Mock).mockReturnValue({ user: {}, signOut: mockSignOut });
+
+        mockCanGoBack.mockReturnValue(false);
+
         const { getByTestId } = render(<ProfileScreen navigation={mockNavigation} route={mockRoute} />);
         fireEvent.press(getByTestId('back-button'));
-        expect(mockNavigate).toHaveBeenCalledWith('Home');
+
+        expect(mockCanGoBack).toHaveBeenCalled();
+        expect(mockNavigate).toHaveBeenCalledWith('MainTabs');
+    });
+
+    it('calls goBack if navigation stack allows it', () => {
+        (useAuth as jest.Mock).mockReturnValue({ user: {}, signOut: mockSignOut });
+
+        mockCanGoBack.mockReturnValue(true);
+
+        const { getByTestId } = render(<ProfileScreen navigation={mockNavigation} route={mockRoute} />);
+        fireEvent.press(getByTestId('back-button'));
+
+        expect(mockCanGoBack).toHaveBeenCalled();
+        expect(mockGoBack).toHaveBeenCalled();
     });
 
     it('calls signOut when logout button pressed', () => {

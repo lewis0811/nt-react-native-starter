@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosError } from 'axios';
 import { API_URL } from './api-config';
 
 export const apiClient: AxiosInstance = axios.create({
@@ -12,32 +12,28 @@ type SetupOpts = {
 };
 
 export const setupApiInterceptors = ({ getState, onAuthFailed }: SetupOpts) => {
-    apiClient.interceptors.request.clear && apiClient.interceptors.request.clear();
-    apiClient.interceptors.request.use(async (config) => {
+    apiClient.interceptors.request.clear?.();
+
+    apiClient.interceptors.request.use((config: InternalAxiosRequestConfig) => {
         try {
-            const state = getState();
-            const token = state?.auth?.token;
+            const token = getState()?.auth?.token;
             if (token) {
-                config.headers = config.headers || {};
-                config.headers.Authorization = `Bearer ${token}`;
+                config.headers.set('Authorization', `Bearer ${token}`);
             }
         } catch (e) {
-            // ignore
+            console.error('Error initializing token in interceptor:', e);
         }
         return config;
     });
 
-    apiClient.interceptors.response.clear && apiClient.interceptors.response.clear();
+    apiClient.interceptors.response.clear?.();
+
     apiClient.interceptors.response.use(
         (resp) => resp,
-        async (error) => {
-            try {
-                const status = error?.response?.status;
-                if (status === 401 || status === 403) {
-                    onAuthFailed();
-                }
-            } catch (e) {
-                // ignore
+        (error: AxiosError) => {
+            const status = error.response?.status;
+            if (status === 401 || status === 403) {
+                onAuthFailed();
             }
             return Promise.reject(error);
         }

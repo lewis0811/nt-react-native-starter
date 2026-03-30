@@ -1,19 +1,15 @@
 import React, { useCallback } from 'react';
-import { View, Text, Image, ActivityIndicator, TouchableOpacity, Alert, FlatList } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert, FlatList } from 'react-native';
+import LoadingScreen from '../../../components/LoadingScreen';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { RouteProp } from '@react-navigation/native';
-import { Product } from '../types/product';
+import type { Product } from '../types';
+import type { RootStackParamList } from '../../../navigation/types';
 import Button from '../../../components/Button';
 import { styles } from './styles/product-details-styles';
 import useProductDetails from '../hooks/use-product-details';
 import ReviewItem from '../components/ReviewItem';
 import RatingStars from '../components/RatingStars';
-
-type RootStackParamList = {
-    ProductDetails: {
-        product?: Product;
-    } | undefined;
-};
 
 type ProductDetailsNavigationProp = NativeStackNavigationProp<RootStackParamList, 'ProductDetails'>;
 type ProductDetailsRouteProp = RouteProp<RootStackParamList, 'ProductDetails'>;
@@ -25,17 +21,16 @@ interface Props {
 
 export const ProductDetailsScreen: React.FC<Props> = ({ route, navigation }) => {
     const initial = route?.params?.product;
-    const pid = initial?.id ?? undefined;
-    const { product, reviews, loading, error, fetchProductById } = useProductDetails(initial ?? pid);
+    const { product, reviews, loading, error, fetchProductById } = useProductDetails(initial);
 
     const handleRetry = useCallback(() => {
-        const idToFetch = product?.id ?? pid;
+        const idToFetch = product?.id ?? initial?.id;
         if (idToFetch) {
             void fetchProductById(Number(idToFetch));
         } else {
             Alert.alert('Error', 'Product id is not available to retry');
         }
-    }, [product?.id, pid, fetchProductById]);
+    }, [product?.id, initial?.id, fetchProductById]);
 
     const handleGoBack = useCallback(() => navigation?.goBack?.(), [navigation]);
     const handleShare = useCallback(() => Alert.alert('Share', 'Share product'), []);
@@ -43,11 +38,7 @@ export const ProductDetailsScreen: React.FC<Props> = ({ route, navigation }) => 
     const handleBuyNow = useCallback(() => Alert.alert('Buy', 'Proceed to buy'), []);
 
     if (loading) {
-        return (
-            <View style={styles.center}>
-                <ActivityIndicator testID="loading-indicator" />
-            </View>
-        );
+        return <LoadingScreen testID="loading-indicator" />;
     }
 
     if (error) {

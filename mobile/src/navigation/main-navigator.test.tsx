@@ -9,6 +9,8 @@ jest.mock('@react-navigation/native-stack', () => {
         createNativeStackNavigator: () => ({
             Navigator: ({ children }: any) => <>{children}</>,
             Screen: ({ component: Component }: any) => <Component />,
+            // FIX: Bổ sung mock cho Group vì code thực tế đã sử dụng <Stack.Group />
+            Group: ({ children }: any) => <>{children}</>,
         }),
     };
 });

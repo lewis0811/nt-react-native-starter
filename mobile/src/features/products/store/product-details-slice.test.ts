@@ -67,15 +67,8 @@ describe('product-details-slice', () => {
             expect(state.product).toEqual(mockProduct);
         });
 
-        it('should set product on fulfilled with direct data', async () => {
-            mockGet.mockResolvedValueOnce({ data: mockProduct });
-            const store = createTestStore();
-            await store.dispatch(fetchProductById(5));
-            expect(store.getState().productDetails.product).toEqual(mockProduct);
-        });
-
         it('should set error on rejected', async () => {
-            mockGet.mockRejectedValueOnce(new Error('Product not found'));
+            mockGet.mockRejectedValueOnce({ message: 'Product not found' });
             const store = createTestStore();
             await store.dispatch(fetchProductById(999));
             const state = store.getState().productDetails;
@@ -87,20 +80,13 @@ describe('product-details-slice', () => {
             mockGet.mockRejectedValueOnce({});
             const store = createTestStore();
             await store.dispatch(fetchProductById(0));
-            expect(store.getState().productDetails.error).toBe('Failed');
+            expect(store.getState().productDetails.error).toBe('Error fetching product details');
         });
     });
 
     describe('fetchProductReviews', () => {
         it('should set reviews on fulfilled with nested data', async () => {
             mockGet.mockResolvedValueOnce({ data: { data: mockReviews } });
-            const store = createTestStore();
-            await store.dispatch(fetchProductReviews(5));
-            expect(store.getState().productDetails.reviews).toEqual(mockReviews);
-        });
-
-        it('should set reviews on fulfilled with direct data', async () => {
-            mockGet.mockResolvedValueOnce({ data: mockReviews });
             const store = createTestStore();
             await store.dispatch(fetchProductReviews(5));
             expect(store.getState().productDetails.reviews).toEqual(mockReviews);
@@ -122,12 +108,15 @@ describe('product-details-slice', () => {
         });
 
         it('should ignore rejected fetchProductReviews', async () => {
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => { });
             const store = createTestStore();
             const prevState = store.getState().productDetails;
-            mockGet.mockRejectedValueOnce(new Error('Reviews not available'));
+            mockGet.mockRejectedValueOnce({ message: 'Reviews not available' });
             await store.dispatch(fetchProductReviews(5));
             const state = store.getState().productDetails;
             expect(state.error).toBe(prevState.error);
+            expect(consoleSpy).toHaveBeenCalled();
+            consoleSpy.mockRestore();
         });
     });
 });

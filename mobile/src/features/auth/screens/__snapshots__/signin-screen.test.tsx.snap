@@ -25,18 +25,19 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
       contentContainerStyle={
         {
           "alignItems": "center",
-          "backgroundColor": "#F9FAFB",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "justifyContent": "center",
           "padding": 16,
         }
       }
+      keyboardShouldPersistTaps="handled"
     >
       <View>
         <View
           style={
             {
-              "backgroundColor": "#FFFFFF",
+              "backgroundColor": "#F9FAFB",
               "borderColor": "#F3F4F6",
               "borderRadius": 12,
               "borderWidth": 1,
@@ -125,144 +126,144 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
           <View
             style={
               {
-                "backgroundColor": "#F3F4F6",
-                "borderRadius": 12,
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "padding": 4,
-                "width": "100%",
-              }
-            }
-          >
-            <View
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 12,
-                  "elevation": 1,
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingVertical": 8,
-                  "shadowColor": "#000000",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 0,
-                  },
-                  "shadowOpacity": 0.05,
-                  "shadowRadius": 2,
-                }
-              }
-            >
-              <Text
-                style={
-                  [
-                    {
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                    },
-                    {
-                      "color": "#1F2937",
-                    },
-                  ]
-                }
-              >
-                Login
-              </Text>
-            </View>
-            <View
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingVertical": 8,
-                }
-              }
-            >
-              <Text
-                style={
-                  [
-                    {
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                    },
-                    {
-                      "color": "#6B7280",
-                    },
-                  ]
-                }
-              >
-                Sign Up
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              {
                 "gap": 16,
                 "marginBottom": 24,
               }
             }
           >
+            <View
+              style={
+                {
+                  "backgroundColor": "#F3F4F6",
+                  "borderRadius": 12,
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                  "padding": 4,
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#F9FAFB",
+                    "borderRadius": 12,
+                    "elevation": 1,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "paddingVertical": 8,
+                    "shadowColor": "#000000",
+                    "shadowOffset": {
+                      "height": 1,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.05,
+                    "shadowRadius": 2,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                      },
+                      {
+                        "color": "#1F2937",
+                      },
+                    ]
+                  }
+                >
+                  Login
+                </Text>
+              </View>
+              <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "borderRadius": 12,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "paddingVertical": 8,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                      },
+                      {
+                        "color": "#6B7280",
+                      },
+                    ]
+                  }
+                >
+                  Sign Up
+                </Text>
+              </View>
+            </View>
             <View
               style={
                 {
@@ -295,6 +296,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
                 }
               >
                 <TextInput
+                  autoCapitalize="none"
                   onChangeText={[Function]}
                   placeholder="Enter your username"
                   style={
@@ -443,7 +445,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
                 onStartShouldSetResponder={[Function]}
                 style={
                   {
-                    "backgroundColor": "#FFFFFF",
+                    "backgroundColor": "#F9FAFB",
                     "borderColor": "#D1D5DB",
                     "borderRadius": 4,
                     "borderWidth": 1,
@@ -853,18 +855,19 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
       contentContainerStyle={
         {
           "alignItems": "center",
-          "backgroundColor": "#F9FAFB",
+          "backgroundColor": "#FFFFFF",
           "flex": 1,
           "justifyContent": "center",
           "padding": 16,
         }
       }
+      keyboardShouldPersistTaps="handled"
     >
       <View>
         <View
           style={
             {
-              "backgroundColor": "#FFFFFF",
+              "backgroundColor": "#F9FAFB",
               "borderColor": "#F3F4F6",
               "borderRadius": 12,
               "borderWidth": 1,
@@ -953,144 +956,144 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
           <View
             style={
               {
-                "backgroundColor": "#F3F4F6",
-                "borderRadius": 12,
-                "flexDirection": "row",
-                "marginBottom": 24,
-                "padding": 4,
-                "width": "100%",
-              }
-            }
-          >
-            <View
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 12,
-                  "elevation": 1,
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingVertical": 8,
-                  "shadowColor": "#000000",
-                  "shadowOffset": {
-                    "height": 1,
-                    "width": 0,
-                  },
-                  "shadowOpacity": 0.05,
-                  "shadowRadius": 2,
-                }
-              }
-            >
-              <Text
-                style={
-                  [
-                    {
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                    },
-                    {
-                      "color": "#1F2937",
-                    },
-                  ]
-                }
-              >
-                Login
-              </Text>
-            </View>
-            <View
-              accessibilityState={
-                {
-                  "busy": undefined,
-                  "checked": undefined,
-                  "disabled": undefined,
-                  "expanded": undefined,
-                  "selected": undefined,
-                }
-              }
-              accessibilityValue={
-                {
-                  "max": undefined,
-                  "min": undefined,
-                  "now": undefined,
-                  "text": undefined,
-                }
-              }
-              accessible={true}
-              collapsable={false}
-              focusable={true}
-              onClick={[Function]}
-              onResponderGrant={[Function]}
-              onResponderMove={[Function]}
-              onResponderRelease={[Function]}
-              onResponderTerminate={[Function]}
-              onResponderTerminationRequest={[Function]}
-              onStartShouldSetResponder={[Function]}
-              style={
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "transparent",
-                  "borderRadius": 12,
-                  "flex": 1,
-                  "justifyContent": "center",
-                  "opacity": 1,
-                  "paddingVertical": 8,
-                }
-              }
-            >
-              <Text
-                style={
-                  [
-                    {
-                      "fontSize": 14,
-                      "fontWeight": "500",
-                    },
-                    {
-                      "color": "#6B7280",
-                    },
-                  ]
-                }
-              >
-                Sign Up
-              </Text>
-            </View>
-          </View>
-          <View
-            style={
-              {
                 "gap": 16,
                 "marginBottom": 24,
               }
             }
           >
+            <View
+              style={
+                {
+                  "backgroundColor": "#F3F4F6",
+                  "borderRadius": 12,
+                  "flexDirection": "row",
+                  "marginBottom": 24,
+                  "padding": 4,
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#F9FAFB",
+                    "borderRadius": 12,
+                    "elevation": 1,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "paddingVertical": 8,
+                    "shadowColor": "#000000",
+                    "shadowOffset": {
+                      "height": 1,
+                      "width": 0,
+                    },
+                    "shadowOpacity": 0.05,
+                    "shadowRadius": 2,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                      },
+                      {
+                        "color": "#1F2937",
+                      },
+                    ]
+                  }
+                >
+                  Login
+                </Text>
+              </View>
+              <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "transparent",
+                    "borderRadius": 12,
+                    "flex": 1,
+                    "justifyContent": "center",
+                    "opacity": 1,
+                    "paddingVertical": 8,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "fontSize": 14,
+                        "fontWeight": "500",
+                      },
+                      {
+                        "color": "#6B7280",
+                      },
+                    ]
+                  }
+                >
+                  Sign Up
+                </Text>
+              </View>
+            </View>
             <View
               style={
                 {
@@ -1123,6 +1126,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
                 }
               >
                 <TextInput
+                  autoCapitalize="none"
                   onChangeText={[Function]}
                   placeholder="Enter your username"
                   style={
@@ -1271,7 +1275,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
                 onStartShouldSetResponder={[Function]}
                 style={
                   {
-                    "backgroundColor": "#FFFFFF",
+                    "backgroundColor": "#F9FAFB",
                     "borderColor": "#D1D5DB",
                     "borderRadius": 4,
                     "borderWidth": 1,
@@ -1344,6 +1348,8 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
             >
               <ActivityIndicator
                 color="#000"
+                size="small"
+                testID="signin-loading"
               />
             </View>
             <View
