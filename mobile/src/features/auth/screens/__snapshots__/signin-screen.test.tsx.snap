@@ -25,7 +25,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
       contentContainerStyle={
         {
           "alignItems": "center",
-          "backgroundColor": "#f9fafb",
+          "backgroundColor": "#F9FAFB",
           "flex": 1,
           "justifyContent": "center",
           "padding": 16,
@@ -36,14 +36,14 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
         <View
           style={
             {
-              "backgroundColor": "#ffffff",
-              "borderColor": "#f3f4f6",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#F3F4F6",
               "borderRadius": 12,
               "borderWidth": 1,
               "elevation": 10,
               "maxWidth": 448,
               "padding": 33,
-              "shadowColor": "#000",
+              "shadowColor": "#000000",
               "shadowOffset": {
                 "height": 20,
                 "width": 0,
@@ -68,7 +68,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "backgroundColor": "rgba(13, 242, 242, 0.1)",
+                  "backgroundColor": "rgba(13, 242, 242, 0.10)",
                   "borderRadius": 32,
                   "height": 64,
                   "justifyContent": "center",
@@ -99,9 +99,9 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               <Text
                 style={
                   {
-                    "color": "#1f2937",
+                    "color": "#1F2937",
                     "fontSize": 24,
-                    "fontWeight": "bold",
+                    "fontWeight": "700",
                     "textAlign": "center",
                   }
                 }
@@ -111,7 +111,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               <Text
                 style={
                   {
-                    "color": "#6b7280",
+                    "color": "#6B7280",
                     "fontSize": 16,
                     "marginTop": 4,
                     "textAlign": "center",
@@ -125,7 +125,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
           <View
             style={
               {
-                "backgroundColor": "#f3f4f6",
+                "backgroundColor": "#F3F4F6",
                 "borderRadius": 12,
                 "flexDirection": "row",
                 "marginBottom": 24,
@@ -165,14 +165,14 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "backgroundColor": "#ffffff",
+                  "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
-                  "elevation": 2,
+                  "elevation": 1,
                   "flex": 1,
                   "justifyContent": "center",
                   "opacity": 1,
                   "paddingVertical": 8,
-                  "shadowColor": "#000",
+                  "shadowColor": "#000000",
                   "shadowOffset": {
                     "height": 1,
                     "width": 0,
@@ -190,7 +190,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
                       "fontWeight": "500",
                     },
                     {
-                      "color": "#1f2937",
+                      "color": "#1F2937",
                     },
                   ]
                 }
@@ -246,7 +246,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
                       "fontWeight": "500",
                     },
                     {
-                      "color": "#6b7280",
+                      "color": "#6B7280",
                     },
                   ]
                 }
@@ -284,8 +284,8 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               <View
                 style={
                   {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#d1d5db",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#D1D5DB",
                     "borderRadius": 12,
                     "borderWidth": 1,
                     "height": 44,
@@ -299,7 +299,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
                   placeholder="Enter your username"
                   style={
                     {
-                      "color": "#6b7280",
+                      "color": "#6B7280",
                       "flex": 1,
                       "fontSize": 16,
                       "paddingVertical": 0,
@@ -330,8 +330,8 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               <View
                 style={
                   {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#d1d5db",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#D1D5DB",
                     "borderRadius": 12,
                     "borderWidth": 1,
                     "height": 44,
@@ -346,7 +346,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
                   secureTextEntry={true}
                   style={
                     {
-                      "color": "#6b7280",
+                      "color": "#6B7280",
                       "flex": 1,
                       "fontSize": 16,
                       "paddingVertical": 0,
@@ -393,7 +393,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               <Text
                 style={
                   {
-                    "color": "#0df2f2",
+                    "color": "#0DF2F2",
                     "fontSize": 14,
                     "fontWeight": "500",
                     "marginTop": 8,
@@ -443,8 +443,8 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
                 onStartShouldSetResponder={[Function]}
                 style={
                   {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#d1d5db",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#D1D5DB",
                     "borderRadius": 4,
                     "borderWidth": 1,
                     "height": 16,
@@ -456,7 +456,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               <Text
                 style={
                   {
-                    "color": "#4b5563",
+                    "color": "#4B5563",
                     "fontSize": 14,
                     "marginLeft": 8,
                   }
@@ -496,7 +496,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "backgroundColor": "#0df2f2",
+                  "backgroundColor": "#0DF2F2",
                   "borderRadius": 12,
                   "elevation": 5,
                   "justifyContent": "center",
@@ -504,7 +504,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
                   "opacity": 1,
                   "paddingHorizontal": 16,
                   "paddingVertical": 12,
-                  "shadowColor": "#000",
+                  "shadowColor": "#000000",
                   "shadowOffset": {
                     "height": 10,
                     "width": 0,
@@ -519,7 +519,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
                   {
                     "color": "#111827",
                     "fontSize": 16,
-                    "fontWeight": "bold",
+                    "fontWeight": "700",
                   }
                 }
               >
@@ -557,7 +557,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "borderColor": "rgba(13, 242, 242, 0.3)",
+                  "borderColor": "rgba(13, 242, 242, 0.30)",
                   "borderRadius": 12,
                   "borderWidth": 2,
                   "flexDirection": "row",
@@ -583,7 +583,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               <Text
                 style={
                   {
-                    "color": "#0df2f2",
+                    "color": "#0DF2F2",
                     "fontSize": 16,
                     "fontWeight": "600",
                   }
@@ -605,7 +605,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
             <View
               style={
                 {
-                  "backgroundColor": "#e5e7eb",
+                  "backgroundColor": "#E5E7EB",
                   "flex": 1,
                   "height": 1,
                 }
@@ -614,7 +614,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
             <Text
               style={
                 {
-                  "color": "#6b7280",
+                  "color": "#6B7280",
                   "fontSize": 14,
                   "marginHorizontal": 8,
                 }
@@ -625,7 +625,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
             <View
               style={
                 {
-                  "backgroundColor": "#e5e7eb",
+                  "backgroundColor": "#E5E7EB",
                   "flex": 1,
                   "height": 1,
                 }
@@ -672,7 +672,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "borderColor": "#e5e7eb",
+                  "borderColor": "#E5E7EB",
                   "borderRadius": 12,
                   "borderWidth": 1,
                   "flex": 1,
@@ -737,7 +737,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "borderColor": "#e5e7eb",
+                  "borderColor": "#E5E7EB",
                   "borderRadius": 12,
                   "borderWidth": 1,
                   "flex": 1,
@@ -782,7 +782,7 @@ exports[`SignInScreen snapshot matches snapshot in default (idle) state 1`] = `
             <Text
               style={
                 {
-                  "color": "#9ca3af",
+                  "color": "#9CA3AF",
                   "fontSize": 12,
                   "textAlign": "center",
                 }
@@ -853,7 +853,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
       contentContainerStyle={
         {
           "alignItems": "center",
-          "backgroundColor": "#f9fafb",
+          "backgroundColor": "#F9FAFB",
           "flex": 1,
           "justifyContent": "center",
           "padding": 16,
@@ -864,14 +864,14 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
         <View
           style={
             {
-              "backgroundColor": "#ffffff",
-              "borderColor": "#f3f4f6",
+              "backgroundColor": "#FFFFFF",
+              "borderColor": "#F3F4F6",
               "borderRadius": 12,
               "borderWidth": 1,
               "elevation": 10,
               "maxWidth": 448,
               "padding": 33,
-              "shadowColor": "#000",
+              "shadowColor": "#000000",
               "shadowOffset": {
                 "height": 20,
                 "width": 0,
@@ -896,7 +896,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "backgroundColor": "rgba(13, 242, 242, 0.1)",
+                  "backgroundColor": "rgba(13, 242, 242, 0.10)",
                   "borderRadius": 32,
                   "height": 64,
                   "justifyContent": "center",
@@ -927,9 +927,9 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               <Text
                 style={
                   {
-                    "color": "#1f2937",
+                    "color": "#1F2937",
                     "fontSize": 24,
-                    "fontWeight": "bold",
+                    "fontWeight": "700",
                     "textAlign": "center",
                   }
                 }
@@ -939,7 +939,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               <Text
                 style={
                   {
-                    "color": "#6b7280",
+                    "color": "#6B7280",
                     "fontSize": 16,
                     "marginTop": 4,
                     "textAlign": "center",
@@ -953,7 +953,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
           <View
             style={
               {
-                "backgroundColor": "#f3f4f6",
+                "backgroundColor": "#F3F4F6",
                 "borderRadius": 12,
                 "flexDirection": "row",
                 "marginBottom": 24,
@@ -993,14 +993,14 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "backgroundColor": "#ffffff",
+                  "backgroundColor": "#FFFFFF",
                   "borderRadius": 12,
-                  "elevation": 2,
+                  "elevation": 1,
                   "flex": 1,
                   "justifyContent": "center",
                   "opacity": 1,
                   "paddingVertical": 8,
-                  "shadowColor": "#000",
+                  "shadowColor": "#000000",
                   "shadowOffset": {
                     "height": 1,
                     "width": 0,
@@ -1018,7 +1018,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
                       "fontWeight": "500",
                     },
                     {
-                      "color": "#1f2937",
+                      "color": "#1F2937",
                     },
                   ]
                 }
@@ -1074,7 +1074,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
                       "fontWeight": "500",
                     },
                     {
-                      "color": "#6b7280",
+                      "color": "#6B7280",
                     },
                   ]
                 }
@@ -1112,8 +1112,8 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               <View
                 style={
                   {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#d1d5db",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#D1D5DB",
                     "borderRadius": 12,
                     "borderWidth": 1,
                     "height": 44,
@@ -1127,7 +1127,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
                   placeholder="Enter your username"
                   style={
                     {
-                      "color": "#6b7280",
+                      "color": "#6B7280",
                       "flex": 1,
                       "fontSize": 16,
                       "paddingVertical": 0,
@@ -1158,8 +1158,8 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               <View
                 style={
                   {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#d1d5db",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#D1D5DB",
                     "borderRadius": 12,
                     "borderWidth": 1,
                     "height": 44,
@@ -1174,7 +1174,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
                   secureTextEntry={true}
                   style={
                     {
-                      "color": "#6b7280",
+                      "color": "#6B7280",
                       "flex": 1,
                       "fontSize": 16,
                       "paddingVertical": 0,
@@ -1221,7 +1221,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               <Text
                 style={
                   {
-                    "color": "#0df2f2",
+                    "color": "#0DF2F2",
                     "fontSize": 14,
                     "fontWeight": "500",
                     "marginTop": 8,
@@ -1271,8 +1271,8 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
                 onStartShouldSetResponder={[Function]}
                 style={
                   {
-                    "backgroundColor": "#ffffff",
-                    "borderColor": "#d1d5db",
+                    "backgroundColor": "#FFFFFF",
+                    "borderColor": "#D1D5DB",
                     "borderRadius": 4,
                     "borderWidth": 1,
                     "height": 16,
@@ -1284,7 +1284,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               <Text
                 style={
                   {
-                    "color": "#4b5563",
+                    "color": "#4B5563",
                     "fontSize": 14,
                     "marginLeft": 8,
                   }
@@ -1324,7 +1324,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "backgroundColor": "#0df2f2",
+                  "backgroundColor": "#0DF2F2",
                   "borderRadius": 12,
                   "elevation": 5,
                   "justifyContent": "center",
@@ -1332,7 +1332,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
                   "opacity": 1,
                   "paddingHorizontal": 16,
                   "paddingVertical": 12,
-                  "shadowColor": "#000",
+                  "shadowColor": "#000000",
                   "shadowOffset": {
                     "height": 10,
                     "width": 0,
@@ -1377,7 +1377,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "borderColor": "rgba(13, 242, 242, 0.3)",
+                  "borderColor": "rgba(13, 242, 242, 0.30)",
                   "borderRadius": 12,
                   "borderWidth": 2,
                   "flexDirection": "row",
@@ -1403,7 +1403,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               <Text
                 style={
                   {
-                    "color": "#0df2f2",
+                    "color": "#0DF2F2",
                     "fontSize": 16,
                     "fontWeight": "600",
                   }
@@ -1425,7 +1425,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
             <View
               style={
                 {
-                  "backgroundColor": "#e5e7eb",
+                  "backgroundColor": "#E5E7EB",
                   "flex": 1,
                   "height": 1,
                 }
@@ -1434,7 +1434,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
             <Text
               style={
                 {
-                  "color": "#6b7280",
+                  "color": "#6B7280",
                   "fontSize": 14,
                   "marginHorizontal": 8,
                 }
@@ -1445,7 +1445,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
             <View
               style={
                 {
-                  "backgroundColor": "#e5e7eb",
+                  "backgroundColor": "#E5E7EB",
                   "flex": 1,
                   "height": 1,
                 }
@@ -1492,7 +1492,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "borderColor": "#e5e7eb",
+                  "borderColor": "#E5E7EB",
                   "borderRadius": 12,
                   "borderWidth": 1,
                   "flex": 1,
@@ -1557,7 +1557,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
               style={
                 {
                   "alignItems": "center",
-                  "borderColor": "#e5e7eb",
+                  "borderColor": "#E5E7EB",
                   "borderRadius": 12,
                   "borderWidth": 1,
                   "flex": 1,
@@ -1602,7 +1602,7 @@ exports[`SignInScreen snapshot matches snapshot in loading state 1`] = `
             <Text
               style={
                 {
-                  "color": "#9ca3af",
+                  "color": "#9CA3AF",
                   "fontSize": 12,
                   "textAlign": "center",
                 }

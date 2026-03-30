@@ -37,10 +37,10 @@ export const SignInScreen: FC<ISignInScreen> = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={styles.safeArea}>
             <KeyboardAvoidingView
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={{ flex: 1 }}
+                style={styles.keyboardView}
             >
                 <ScrollView contentContainerStyle={styles.container}>
                     <View style={styles.card}>
@@ -142,12 +142,12 @@ export const SignInScreen: FC<ISignInScreen> = ({ navigation }) => {
                                 <TouchableOpacity
                                     style={[
                                         styles.checkbox,
-                                        useBiometrics && { backgroundColor: '#0df2f2' },
+                                        useBiometrics && styles.checkboxActive,
                                     ]}
                                     onPress={() => setUseBiometrics(!useBiometrics)}
                                 >
                                     {useBiometrics && (
-                                        <Text style={{ color: '#ffffff', textAlign: 'center' }}>✓</Text>
+                                        <Text style={styles.checkmarkText}>✓</Text>
                                     )}
                                 </TouchableOpacity>
                                 <Text style={styles.checkboxLabel}>Use biometrics for faster login</Text>

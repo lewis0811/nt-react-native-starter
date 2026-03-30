@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { styles as screenStyles } from '../../screens/styles/product-details-styles';
+import { theme } from '../../../../assets/styles';
 
 interface Review {
     id?: string | number;
@@ -22,7 +23,7 @@ const ReviewItem: React.FC<Props> = React.memo(({ review }) => {
                 <Text style={screenStyles.reviewerName}>{`User ${review.userId ?? 'Anonymous'}`}</Text>
                 <View style={screenStyles.reviewRowRight}>
                     {Array.from({ length: 5 }).map((_, i) => (
-                        <Text key={i} style={[screenStyles.star, { color: i < rating ? '#FFB020' : '#CBD5E1' }]}>
+                        <Text key={i} style={[screenStyles.star, { color: i < rating ? theme.colors.feedback.star : theme.colors.feedback.starEmpty }]}>
                             {i < rating ? '★' : '☆'}
                         </Text>
                     ))}

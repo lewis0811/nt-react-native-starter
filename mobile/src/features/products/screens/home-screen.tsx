@@ -93,11 +93,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
             </View>
 
             {loading ? (
-                <ActivityIndicator style={{ marginTop: 20 }} testID="loading-indicator" />
+                <ActivityIndicator style={styles.loadingIndicator} testID="loading-indicator" />
             ) : error ? (
-                <View style={{ padding: 16, alignItems: 'center' }}>
-                    <View style={{ alignItems: 'center' }}>
-                        <Text style={{ color: '#a00', marginBottom: 8 }}>Can't load products.</Text>
+                <View style={styles.errorContainer}>
+                    <View style={styles.errorInner}>
+                        <Text style={styles.errorText}>Can't load products.</Text>
                         <Button onPress={() => { void refresh(); }} testID="retry-button">Try again</Button>
                     </View>
                 </View>
@@ -113,7 +113,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                     )}
                     numColumns={2}
                     contentContainerStyle={styles.list}
-                    columnWrapperStyle={{ justifyContent: 'space-between' }}
+                    columnWrapperStyle={styles.columnWrapper}
                     onRefresh={refresh}
                     refreshing={loading}
                 />

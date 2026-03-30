@@ -1,15 +1,17 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SignInScreen } from './src/screens/signin-screen';
-import MainNavigator from './src/screens/navigator/main-navigator'
+import { SignInScreen } from './src/features/auth/screens/signin-screen';
+import MainNavigator from './src/navigation/main-navigator';
 import { Provider } from 'react-redux';
-import store from './src/stores/store';
-import { setupApiInterceptors } from './src/services/api-service';
-import { logout } from './src/slices/auth-slice';
+import store from './src/store/store';
+import { setupApiInterceptors } from './src/services/api/api-service';
+import { logout } from './src/features/auth/store/auth-slice';
 import { ActivityIndicator, View } from 'react-native';
-import { useAppDispatch, useAppSelector } from './src/stores/store';
+import { useAppDispatch, useAppSelector } from './src/store/store';
 import { useEffect } from 'react';
-import { initAuth } from './src/slices/auth-slice';
+import { initAuth } from './src/features/auth/store/auth-slice';
+import { theme } from './src/assets/styles';
+import { appStyles, stackScreenOptions } from './src/styles/app-styles';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,15 +35,15 @@ const AppContent: React.FC = () => {
 
   if (isInitializing) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#0df2f2" />
+      <View style={appStyles.loadingContainer}>
+        <ActivityIndicator size="large" color={theme.colors.brand.primary} />
       </View>
     );
   }
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator screenOptions={stackScreenOptions}>
         {token == null ? (
           <Stack.Screen name="SignIn" component={SignInScreen} />
         ) : (

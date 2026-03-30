@@ -1,4 +1,5 @@
-import { StyleSheet, TextStyle, ViewStyle, ImageStyle, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+import { theme } from '../../../../assets/styles';
 
 const { width } = Dimensions.get('window');
 const CARD_MARGIN = 12;
@@ -7,61 +8,47 @@ const CARD_WIDTH = (width - CARD_MARGIN * 3) / 2;
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 12,
-        backgroundColor: '#F8FAFB',
+        padding: CARD_MARGIN,
+        backgroundColor: theme.colors.background.page,
     },
     headerRow: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginBottom: 8,
+        marginBottom: theme.spacing[2],
     },
     header: {
         fontSize: 22,
-        fontWeight: '700',
+        fontWeight: theme.typography.weight.extrabold,
     },
     headerActions: {
         flexDirection: 'row',
     },
     iconBtn: {
-        marginLeft: 8,
-        backgroundColor: 'white',
-        padding: 8,
-        borderRadius: 8,
+        marginLeft: theme.spacing[2],
+        backgroundColor: theme.colors.background.card,
+        padding: theme.spacing[2],
+        borderRadius: theme.radius.md,
     },
     notificationIcon: {
-        marginLeft: 8,
-        backgroundColor: 'white',
+        marginLeft: theme.spacing[2],
+        backgroundColor: theme.colors.background.card,
         width: 20,
         height: 20,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-        elevation: 3,
+        ...theme.shadow.sm,
     },
     cartIcon: {
-        marginLeft: 8,
-        backgroundColor: 'white',
+        marginLeft: theme.spacing[2],
+        backgroundColor: theme.colors.background.card,
         width: 20,
         height: 20,
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
-        shadowColor: '#000',
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-        elevation: 3,
+        ...theme.shadow.sm,
     },
     iconImage: {
         width: 12,
@@ -69,44 +56,44 @@ export const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     searchWrap: {
-        marginTop: 8,
+        marginTop: theme.spacing[2],
     },
     categoriesWrap: {
-        marginTop: 8,
+        marginTop: theme.spacing[2],
         paddingVertical: 6,
     },
     chip: {
-        paddingVertical: 8,
+        paddingVertical: theme.spacing[2],
         paddingHorizontal: 14,
-        backgroundColor: '#fff',
-        borderRadius: 20,
-        marginRight: 8,
+        backgroundColor: theme.colors.background.card,
+        borderRadius: theme.radius['2xl'],
+        marginRight: theme.spacing[2],
     },
     chipActive: {
-        backgroundColor: '#00E6DA',
+        backgroundColor: theme.colors.brand.deep,
     },
     chipText: {
-        color: '#333',
+        color: theme.colors.text.body,
     },
     chipTextActive: {
-        color: '#003',
+        color: theme.colors.text.navy,
     },
     list: {
-        paddingVertical: 8,
-        paddingBottom: 40,
+        paddingVertical: theme.spacing[2],
+        paddingBottom: theme.spacing[10],
     },
     card: {
-        backgroundColor: 'white',
-        borderRadius: 12,
+        backgroundColor: theme.colors.background.card,
+        borderRadius: theme.radius.xl,
         width: CARD_WIDTH,
-        marginBottom: 16,
+        marginBottom: theme.spacing[4],
         overflow: 'hidden',
     },
     imageContainer: {
         position: 'relative',
         width: '100%',
         height: 160,
-        backgroundColor: '#eee',
+        backgroundColor: theme.colors.background.surface,
     },
     image: {
         width: '100%',
@@ -114,8 +101,8 @@ export const styles = StyleSheet.create({
     },
     heart: {
         position: 'absolute',
-        right: 8,
-        top: 8,
+        right: theme.spacing[2],
+        top: theme.spacing[2],
         backgroundColor: 'rgba(255,255,255,0.9)',
         width: 34,
         height: 34,
@@ -124,21 +111,21 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     heartText: {
-        fontSize: 16,
+        fontSize: theme.typography.size.md,
     },
     info: {
         padding: 10,
     },
     title: {
-        fontWeight: '500',
-        fontSize: 14,
-        lineHeight: 20,
-        color: '#111827',
+        fontWeight: theme.typography.weight.medium,
+        fontSize: theme.typography.size.base,
+        lineHeight: theme.typography.lineHeight.sm,
+        color: theme.colors.text.dark,
     },
     category: {
-        fontSize: 12,
-        color: '#8b8b8b',
-        paddingBottom: 4,
+        fontSize: theme.typography.size.xs,
+        color: theme.colors.text.muted,
+        paddingBottom: theme.spacing[1],
     },
     rowBetween: {
         flexDirection: 'row',
@@ -146,22 +133,39 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     price: {
-        fontSize: 16,
-        fontWeight: '700',
-        color: '#111827',
+        fontSize: theme.typography.size.md,
+        fontWeight: theme.typography.weight.bold,
+        color: theme.colors.text.dark,
     },
     addButton: {
-        backgroundColor: '#00E6DA',
+        backgroundColor: theme.colors.brand.deep,
         width: 32,
         height: 32,
-        borderRadius: 12,
+        borderRadius: theme.radius.xl,
         alignItems: 'center',
         justifyContent: 'center',
     },
     addText: {
         fontSize: 20,
-        fontWeight: '700',
-        color: '#000',
+        fontWeight: theme.typography.weight.bold,
+        color: theme.palette.black,
+    },
+    loadingIndicator: {
+        marginTop: theme.spacing[5],
+    },
+    errorContainer: {
+        padding: theme.spacing[4],
+        alignItems: 'center',
+    },
+    errorInner: {
+        alignItems: 'center',
+    },
+    errorText: {
+        color: theme.colors.feedback.error,
+        marginBottom: theme.spacing[2],
+    },
+    columnWrapper: {
+        justifyContent: 'space-between',
     },
 });
 

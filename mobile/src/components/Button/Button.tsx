@@ -1,5 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native';
+import { theme } from '../../assets/styles';
 
 export default function Button({ style, title, children, loading = false, disabled = false, textStyle, ...props }: any) {
     const isDisabled = Boolean(disabled || loading || props.disabled);
@@ -35,17 +36,17 @@ type IButtonStyles = {
 const styles = StyleSheet.create<IButtonStyles>({
     button: {
         width: '100%',
-        marginVertical: 10,
+        marginVertical: theme.spacing[2] + 2,
         paddingVertical: 10,
-        backgroundColor: '#39B78D',
+        backgroundColor: theme.colors.brand.primary,
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: theme.radius.lg,
     },
     text: {
-        fontWeight: 'bold',
-        fontSize: 15,
+        fontWeight: theme.typography.weight.bold,
+        fontSize: theme.typography.size.md - 1,
         lineHeight: 26,
-        color: 'black',
+        color: theme.palette.black,
     },
     disabled: {
         opacity: 0.6,

@@ -57,13 +57,13 @@ describe('MainNavigator', () => {
 
     it('shows ActivityIndicator while initializing', () => {
         setupAuth(null, true);
-        const { getByTestId } = render(<MainNavigator navigation={{}} />);
+        const { getByTestId } = render(<MainNavigator />);
         expect(getByTestId('loading-indicator')).toBeTruthy();
     });
 
     it('renders SignIn when not authenticated', () => {
         setupAuth(null, false);
-        const { getByText, queryByText } = render(<MainNavigator navigation={{}} />);
+        const { getByText, queryByText } = render(<MainNavigator />);
 
         expect(getByText('SignIn')).toBeTruthy();
         expect(queryByText('Home')).toBeNull();
@@ -71,7 +71,7 @@ describe('MainNavigator', () => {
 
     it('renders MainTabs (Home/Profile) and ProductDetails when authenticated', () => {
         setupAuth('abc', false);
-        const { getByText } = render(<MainNavigator navigation={{}} />);
+        const { getByText } = render(<MainNavigator />);
 
         expect(getByText('Home')).toBeTruthy();
         expect(getByText('Profile')).toBeTruthy();

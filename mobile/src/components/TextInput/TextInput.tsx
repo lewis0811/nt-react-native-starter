@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput as Input, StyleSheet, TextStyle, ViewStyle } from 'react-native';
+import { theme } from '../../assets/styles';
 
 export default function TextInput({ errorText, description, ...props }: any) {
     return (
@@ -23,23 +24,23 @@ type ITexInputStyles = {
 const styles = StyleSheet.create<ITexInputStyles>({
     container: {
         width: '100%',
-        marginVertical: 12,
+        marginVertical: theme.spacing[3],
     },
     input: {
-        backgroundColor: 'white',
-        borderColor: 'gray',
+        backgroundColor: theme.colors.background.card,
+        borderColor: theme.colors.text.muted,
         paddingVertical: 10,
-        paddingHorizontal: 16,
-        borderRadius: 10,
+        paddingHorizontal: theme.spacing[4],
+        borderRadius: theme.radius.lg,
     },
     description: {
-        fontSize: 13,
-        color: 'gray',
-        paddingTop: 8,
+        fontSize: theme.typography.size.sm,
+        color: theme.colors.text.muted,
+        paddingTop: theme.spacing[2],
     },
     error: {
-        fontSize: 13,
-        color: 'gray',
-        paddingTop: 8,
+        fontSize: theme.typography.size.sm,
+        color: theme.colors.text.muted,
+        paddingTop: theme.spacing[2],
     },
 });
