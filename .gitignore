@@ -115,3 +115,7 @@ pnpm-debug.log*
 # Misc
 /.expo-local
 /.idea/
+
+# Ignore local SQLite DB files
+data.db
+**/data.db
